@@ -1,0 +1,160 @@
+{
+ "splits": 20,
+ "settings": {
+  "10": {
+   "groups": {
+    "train": 110,
+    "cal": 10,
+    "test": 30
+   },
+   "rows": {
+    "train": 11000,
+    "cal_seen": 2200,
+    "cal_unseen": 1500,
+    "test_seen": 3300,
+    "test_unseen": 4500
+   },
+   "fixed_sequence": {
+    "seen_coverage": 0.7496666666666666,
+    "seen_silent": 0.004021057550715105,
+    "unseen_far": 0.04566666666666667,
+    "unseen_far_max": 0.12022222222222222,
+    "unseen_over_budget": 0.4,
+    "never": 0.0
+   },
+   "cluster_bootstrap": {
+    "seen_coverage": 0.6676060606060605,
+    "seen_silent": 0.004606589568483639,
+    "unseen_far": 0.03501111111111112,
+    "unseen_far_max": 0.14022222222222222,
+    "unseen_over_budget": 0.15,
+    "never": 0.0
+   }
+  },
+  "20": {
+   "groups": {
+    "train": 100,
+    "cal": 20,
+    "test": 30
+   },
+   "rows": {
+    "train": 10000,
+    "cal_seen": 2000,
+    "cal_unseen": 3000,
+    "test_seen": 3000,
+    "test_unseen": 4500
+   },
+   "fixed_sequence": {
+    "seen_coverage": 0.7852833333333333,
+    "seen_silent": 0.003554393720714395,
+    "unseen_far": 0.044288888888888885,
+    "unseen_far_max": 0.092,
+    "unseen_over_budget": 0.4,
+    "never": 0.0
+   },
+   "cluster_bootstrap": {
+    "seen_coverage": 0.6972333333333334,
+    "seen_silent": 0.0034749097657043003,
+    "unseen_far": 0.03076666666666667,
+    "unseen_far_max": 0.07977777777777778,
+    "unseen_over_budget": 0.15,
+    "never": 0.0
+   }
+  },
+  "30": {
+   "groups": {
+    "train": 90,
+    "cal": 30,
+    "test": 30
+   },
+   "rows": {
+    "train": 9000,
+    "cal_seen": 1800,
+    "cal_unseen": 4500,
+    "test_seen": 2700,
+    "test_unseen": 4500
+   },
+   "fixed_sequence": {
+    "seen_coverage": 0.7947037037037037,
+    "seen_silent": 0.0030487788398344275,
+    "unseen_far": 0.040799999999999996,
+    "unseen_far_max": 0.08333333333333333,
+    "unseen_over_budget": 0.35,
+    "never": 0.0
+   },
+   "cluster_bootstrap": {
+    "seen_coverage": 0.7084259259259259,
+    "seen_silent": 0.0023039557067564033,
+    "unseen_far": 0.0288,
+    "unseen_far_max": 0.06955555555555555,
+    "unseen_over_budget": 0.1,
+    "never": 0.0
+   }
+  },
+  "40": {
+   "groups": {
+    "train": 80,
+    "cal": 40,
+    "test": 30
+   },
+   "rows": {
+    "train": 8000,
+    "cal_seen": 1600,
+    "cal_unseen": 6000,
+    "test_seen": 2400,
+    "test_unseen": 4500
+   },
+   "fixed_sequence": {
+    "seen_coverage": 0.8070416666666667,
+    "seen_silent": 0.0026978157574412266,
+    "unseen_far": 0.03735555555555555,
+    "unseen_far_max": 0.07155555555555555,
+    "unseen_over_budget": 0.35,
+    "never": 0.0
+   },
+   "cluster_bootstrap": {
+    "seen_coverage": 0.7283541666666667,
+    "seen_silent": 0.003155254112703057,
+    "unseen_far": 0.02677777777777778,
+    "unseen_far_max": 0.06622222222222222,
+    "unseen_over_budget": 0.15,
+    "never": 0.0
+   }
+  },
+  "50": {
+   "groups": {
+    "train": 70,
+    "cal": 50,
+    "test": 30
+   },
+   "rows": {
+    "train": 7000,
+    "cal_seen": 1400,
+    "cal_unseen": 7500,
+    "test_seen": 2100,
+    "test_unseen": 4500
+   },
+   "fixed_sequence": {
+    "seen_coverage": 0.8107380952380951,
+    "seen_silent": 0.00180040577709124,
+    "unseen_far": 0.03496666666666666,
+    "unseen_far_max": 0.06111111111111111,
+    "unseen_over_budget": 0.2,
+    "never": 0.0
+   },
+   "cluster_bootstrap": {
+    "seen_coverage": 0.7522380952380952,
+    "seen_silent": 0.002944821714824782,
+    "unseen_far": 0.024666666666666667,
+    "unseen_far_max": 0.050888888888888886,
+    "unseen_over_budget": 0.05,
+    "never": 0.0
+   }
+  }
+ },
+ "_meta": {
+  "written": "2026-11-11 20:44:09",
+  "host": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.12.15"
+ }
+}

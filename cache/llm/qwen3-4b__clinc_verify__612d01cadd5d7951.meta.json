@@ -1,0 +1,11 @@
+{
+ "model": "qwen3-4b",
+ "hole": "clinc_verify",
+ "version": "612d01cadd5d7951",
+ "choices": [
+  "yes",
+  "no"
+ ],
+ "none_label": null,
+ "instruction": "A fast classifier routes a user's request to a virtual assistant to one category.\nCategories, each with examples of request types it already handles (it also handles other, similar request types that are not listed):\n- auto_and_commute: e.g. current location, distance, gas type, jump start, mpg, oil change when, tire change, tire pressure, uber\n- banking: e.g. account blocked, balance, bill balance, bill due, interest rate, order checks, pay bill, report fraud, transactions\n- credit_cards: e.g. application status, apr, credit limit change, credit score, damaged card, redeem rewards, replacement card duration, report lost card, rewards balance\n- home: e.g. calendar, next song, order, order status, play music, reminder, shopping list, shopping list update, todo list update\n- kitchen_and_dining: e.g. calories, cook time, how busy, ingredient substitution, ingredients list, meal suggestion, nutrition info, recipe, restaurant suggestion\n- meta: e.g. cancel, change ai name, change speed, change volume, no, repeat, reset settings, user name, whisper mode\n- small_talk: e.g. do you have pets, fun fact, greeting, meaning of life, tell joke, thank you, what can i ask you, where are you from, who made you\n- travel: e.g. book hotel, carry on, exchange rate, timezone, translate, travel alert, travel notification, travel suggestion, vaccines\n- utility: e.g. alarm, calculator, date, definition, find phone, flip coin, spelling, timer, weather\n- work: e.g. direct deposit, income, insurance change, meeting schedule, next holiday, pto request, pto used, taxes, w2\n- none_of_these: the request does not belong to any category above.\nYou are checking the fast classifier. Given a request and the category it proposed, decide whether the proposed category is the correct one.\nReply with only yes or no."
+}

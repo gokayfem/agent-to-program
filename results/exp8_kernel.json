@@ -1,0 +1,528 @@
+{
+ "cases": {
+  "seen": 300,
+  "unseen_groups": 200,
+  "out_of_scope": 100
+ },
+ "bad_inputs": {
+  "structural": 20,
+  "gibberish": 60,
+  "keyboard_mash": 40,
+  "injection": 12,
+  "far_domain": 20
+ },
+ "builds": {
+  "guards + gate(G) + verifier": {
+   "program": "guards + gate(G) + verifier",
+   "cases": 600,
+   "accuracy_overall": 0.8467,
+   "fast_path_rate": 0.8867,
+   "no_llm_rate": 0.4683,
+   "agent_rate": 0.1133,
+   "silent_errors": 92,
+   "silent_error_rate": 0.1729,
+   "silent_error_upper95": 0.2022,
+   "llm_calls_per_run": 0.51,
+   "by_tier": {
+    "rules": {
+     "n": 184,
+     "wrong": 5
+    },
+    "model": {
+     "n": 97,
+     "wrong": 2
+    },
+    "llm": {
+     "n": 251,
+     "wrong": 85
+    },
+    "agent": {
+     "n": 68,
+     "wrong": 0
+    }
+   },
+   "latency_ms_p50": {
+    "rules": 0.1071,
+    "model": 6.6088,
+    "llm": 0.0028,
+    "agent": 0.0011
+   },
+   "run_ms_p50_no_llm": 0.1808,
+   "verify_ms_mean": 0.0687,
+   "deterministic": true,
+   "bad_inputs": 152,
+   "guard_false_accepts": 17,
+   "admitted": false,
+   "reasons": [
+    "silent error rate 17.29% exceeds budget 2.00%",
+    "17 bad input(s) were answered on the fast path"
+   ],
+   "llm_answers_missing_in_replay": 0,
+   "admitted_at_5pct": false,
+   "bad_input_detail": {
+    "structural": {
+     "n": 20,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "gibberish": {
+     "n": 60,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "keyboard_mash": {
+     "n": 40,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "injection": {
+     "n": 12,
+     "answered": 10,
+     "by_tier": {
+      "llm": 10
+     }
+    },
+    "far_domain": {
+     "n": 20,
+     "answered": 7,
+     "by_tier": {
+      "llm": 7
+     }
+    }
+   },
+   "info": {
+    "gate": {
+     "kept": 1352,
+     "floor": 0.8499979376792908,
+     "thr": 0.9981405542373067,
+     "q": 0.6
+    },
+    "rules_min_votes": 2.0
+   }
+  },
+  "gate(G) + verifier, no structural guards": {
+   "program": "gate(G) + verifier, no structural guards",
+   "cases": 600,
+   "accuracy_overall": 0.8317,
+   "fast_path_rate": 0.9083,
+   "no_llm_rate": 0.4683,
+   "agent_rate": 0.0917,
+   "silent_errors": 101,
+   "silent_error_rate": 0.1853,
+   "silent_error_upper95": 0.2149,
+   "llm_calls_per_run": 0.532,
+   "by_tier": {
+    "rules": {
+     "n": 184,
+     "wrong": 5
+    },
+    "model": {
+     "n": 97,
+     "wrong": 2
+    },
+    "llm": {
+     "n": 264,
+     "wrong": 94
+    },
+    "agent": {
+     "n": 55,
+     "wrong": 0
+    }
+   },
+   "latency_ms_p50": {
+    "rules": 0.1104,
+    "model": 9.6262,
+    "llm": 0.0032,
+    "agent": 0.0012
+   },
+   "run_ms_p50_no_llm": 0.1945,
+   "verify_ms_mean": 0.0833,
+   "deterministic": true,
+   "bad_inputs": 152,
+   "guard_false_accepts": 21,
+   "admitted": false,
+   "reasons": [
+    "silent error rate 18.53% exceeds budget 2.00%",
+    "21 bad input(s) were answered on the fast path"
+   ],
+   "llm_answers_missing_in_replay": 3,
+   "admitted_at_5pct": false,
+   "bad_input_detail": {
+    "structural": {
+     "n": 20,
+     "answered": 3,
+     "by_tier": {
+      "llm": 3
+     }
+    },
+    "gibberish": {
+     "n": 60,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "keyboard_mash": {
+     "n": 40,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "injection": {
+     "n": 12,
+     "answered": 11,
+     "by_tier": {
+      "llm": 11
+     }
+    },
+    "far_domain": {
+     "n": 20,
+     "answered": 7,
+     "by_tier": {
+      "llm": 7
+     }
+    }
+   },
+   "info": {
+    "gate": {
+     "kept": 1352,
+     "floor": 0.8499979376792908,
+     "thr": 0.9981405542373067,
+     "q": 0.6
+    },
+    "rules_min_votes": 2.0
+   }
+  },
+  "guards + gate(G), no verifier": {
+   "program": "guards + gate(G), no verifier",
+   "cases": 600,
+   "accuracy_overall": 0.845,
+   "fast_path_rate": 0.8883,
+   "no_llm_rate": 0.475,
+   "agent_rate": 0.1117,
+   "silent_errors": 93,
+   "silent_error_rate": 0.1745,
+   "silent_error_upper95": 0.2038,
+   "llm_calls_per_run": 0.503,
+   "by_tier": {
+    "rules": {
+     "n": 184,
+     "wrong": 5
+    },
+    "model": {
+     "n": 101,
+     "wrong": 4
+    },
+    "llm": {
+     "n": 248,
+     "wrong": 84
+    },
+    "agent": {
+     "n": 67,
+     "wrong": 0
+    }
+   },
+   "latency_ms_p50": {
+    "rules": 0.1091,
+    "model": 6.5819,
+    "llm": 0.0029,
+    "agent": 0.001
+   },
+   "run_ms_p50_no_llm": 0.214,
+   "verify_ms_mean": 0.0,
+   "deterministic": true,
+   "bad_inputs": 152,
+   "guard_false_accepts": 17,
+   "admitted": false,
+   "reasons": [
+    "silent error rate 17.45% exceeds budget 2.00%",
+    "17 bad input(s) were answered on the fast path"
+   ],
+   "llm_answers_missing_in_replay": 0,
+   "admitted_at_5pct": false,
+   "bad_input_detail": {
+    "structural": {
+     "n": 20,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "gibberish": {
+     "n": 60,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "keyboard_mash": {
+     "n": 40,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "injection": {
+     "n": 12,
+     "answered": 10,
+     "by_tier": {
+      "llm": 10
+     }
+    },
+    "far_domain": {
+     "n": 20,
+     "answered": 7,
+     "by_tier": {
+      "llm": 7
+     }
+    }
+   },
+   "info": {
+    "gate": {
+     "kept": 1352,
+     "floor": 0.8499979376792908,
+     "thr": 0.9981405542373067,
+     "q": 0.6
+    },
+    "rules_min_votes": 2.0
+   }
+  },
+  "guards + naive gate(R), no verifier": {
+   "program": "guards + naive gate(R), no verifier",
+   "cases": 600,
+   "accuracy_overall": 0.8267,
+   "fast_path_rate": 0.945,
+   "no_llm_rate": 0.8467,
+   "agent_rate": 0.055,
+   "silent_errors": 104,
+   "silent_error_rate": 0.1834,
+   "silent_error_upper95": 0.2122,
+   "llm_calls_per_run": 0.132,
+   "by_tier": {
+    "rules": {
+     "n": 184,
+     "wrong": 5
+    },
+    "model": {
+     "n": 324,
+     "wrong": 74
+    },
+    "llm": {
+     "n": 59,
+     "wrong": 25
+    },
+    "agent": {
+     "n": 33,
+     "wrong": 0
+    }
+   },
+   "latency_ms_p50": {
+    "rules": 0.1232,
+    "model": 9.0162,
+    "llm": 0.0028,
+    "agent": 0.001
+   },
+   "run_ms_p50_no_llm": 6.7847,
+   "verify_ms_mean": 0.0,
+   "deterministic": true,
+   "bad_inputs": 152,
+   "guard_false_accepts": 71,
+   "admitted": false,
+   "reasons": [
+    "silent error rate 18.34% exceeds budget 2.00%",
+    "71 bad input(s) were answered on the fast path"
+   ],
+   "llm_answers_missing_in_replay": 0,
+   "admitted_at_5pct": false,
+   "bad_input_detail": {
+    "structural": {
+     "n": 20,
+     "answered": 1,
+     "by_tier": {
+      "model": 1
+     }
+    },
+    "gibberish": {
+     "n": 60,
+     "answered": 46,
+     "by_tier": {
+      "model": 46
+     }
+    },
+    "keyboard_mash": {
+     "n": 40,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "injection": {
+     "n": 12,
+     "answered": 10,
+     "by_tier": {
+      "llm": 2,
+      "model": 8
+     }
+    },
+    "far_domain": {
+     "n": 20,
+     "answered": 14,
+     "by_tier": {
+      "llm": 3,
+      "model": 11
+     }
+    }
+   },
+   "info": {
+    "gate": {
+     "thr": 0.9756969570231315,
+     "floor": -1.0
+    },
+    "rules_min_votes": 2.0
+   }
+  },
+  "full build without the LLM tier (abstentions go to the agent)": {
+   "program": "full build without the LLM tier (abstentions go to the agent)",
+   "cases": 600,
+   "accuracy_overall": 0.9883,
+   "fast_path_rate": 0.4683,
+   "no_llm_rate": 0.4683,
+   "agent_rate": 0.5317,
+   "silent_errors": 7,
+   "silent_error_rate": 0.0249,
+   "silent_error_upper95": 0.0463,
+   "llm_calls_per_run": 0.0,
+   "by_tier": {
+    "rules": {
+     "n": 184,
+     "wrong": 5
+    },
+    "model": {
+     "n": 97,
+     "wrong": 2
+    },
+    "agent": {
+     "n": 319,
+     "wrong": 0
+    }
+   },
+   "latency_ms_p50": {
+    "rules": 0.1099,
+    "model": 6.5302,
+    "agent": 0.0011
+   },
+   "run_ms_p50_no_llm": 0.1759,
+   "verify_ms_mean": 0.0674,
+   "deterministic": true,
+   "bad_inputs": 152,
+   "guard_false_accepts": 0,
+   "admitted": false,
+   "reasons": [
+    "silent error rate 2.49% exceeds budget 2.00%"
+   ],
+   "llm_answers_missing_in_replay": 0,
+   "admitted_at_5pct": true,
+   "bad_input_detail": {
+    "structural": {
+     "n": 20,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "gibberish": {
+     "n": 60,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "keyboard_mash": {
+     "n": 40,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "injection": {
+     "n": 12,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "far_domain": {
+     "n": 20,
+     "answered": 0,
+     "by_tier": {}
+    }
+   },
+   "info": {
+    "gate": {
+     "kept": 1352,
+     "floor": 0.8499979376792908,
+     "thr": 0.9981405542373067,
+     "q": 0.6
+    },
+    "rules_min_votes": 2.0
+   }
+  },
+  "the same without the rule tier": {
+   "program": "the same without the rule tier",
+   "cases": 600,
+   "accuracy_overall": 0.9967,
+   "fast_path_rate": 0.4217,
+   "no_llm_rate": 0.4217,
+   "agent_rate": 0.5783,
+   "silent_errors": 2,
+   "silent_error_rate": 0.0079,
+   "silent_error_upper95": 0.0247,
+   "llm_calls_per_run": 0.0,
+   "by_tier": {
+    "model": {
+     "n": 253,
+     "wrong": 2
+    },
+    "agent": {
+     "n": 347,
+     "wrong": 0
+    }
+   },
+   "latency_ms_p50": {
+    "model": 6.555,
+    "agent": 0.0011
+   },
+   "run_ms_p50_no_llm": 6.9825,
+   "verify_ms_mean": 0.1736,
+   "deterministic": true,
+   "bad_inputs": 152,
+   "guard_false_accepts": 0,
+   "admitted": true,
+   "reasons": [],
+   "llm_answers_missing_in_replay": 0,
+   "admitted_at_5pct": true,
+   "bad_input_detail": {
+    "structural": {
+     "n": 20,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "gibberish": {
+     "n": 60,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "keyboard_mash": {
+     "n": 40,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "injection": {
+     "n": 12,
+     "answered": 0,
+     "by_tier": {}
+    },
+    "far_domain": {
+     "n": 20,
+     "answered": 0,
+     "by_tier": {}
+    }
+   },
+   "info": {
+    "gate": {
+     "kept": 1352,
+     "floor": 0.8499979376792908,
+     "thr": 0.9981405542373067,
+     "q": 0.6
+    },
+    "rules_min_votes": 2.0
+   }
+  }
+ },
+ "_meta": {
+  "written": "2026-11-11 20:36:07",
+  "host": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.12.15"
+ }
+}

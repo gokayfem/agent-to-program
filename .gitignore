@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+data/
+cache/emb/
+cache/harness/
+logs/*.log
+blog/gokaygokay-blog/
+blog/film_stills/
+prior_artifact/
+publish/
+.claude/
+.DS_Store

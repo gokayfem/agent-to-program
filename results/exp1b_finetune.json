@@ -1,0 +1,100 @@
+{
+ "clinc150": {
+  "accuracy": 0.9597777777777777,
+  "fit_s": 269.3,
+  "epochs": 4,
+  "aurc": 0.0034514030383284303,
+  "oracle_cov@0.01": 0.9075555555555556,
+  "fs@0.01": {
+   "thr": 0.9581957459449768,
+   "coverage": 0.8406666666666667,
+   "silent_error_rate": 0.005286809410520751,
+   "silent_errors": 20,
+   "answered": 3783,
+   "upper95": 0.0076730625220777565
+  },
+  "oracle_cov@0.02": 0.9591111111111111,
+  "fs@0.02": {
+   "thr": 0.8216376304626465,
+   "coverage": 0.9375555555555556,
+   "silent_error_rate": 0.014458402465039108,
+   "silent_errors": 61,
+   "answered": 4219,
+   "upper95": 0.01786317370204574
+  },
+  "oracle_cov@0.05": 1.0,
+  "fs@0.05": {
+   "thr": 0.07941686362028122,
+   "coverage": 1.0,
+   "silent_error_rate": 0.04022222222222222,
+   "silent_errors": 181,
+   "answered": 4500,
+   "upper95": 0.04537766931205236
+  },
+  "oos": {
+   "msp": {
+    "auroc": 0.967223584651947,
+    "fpr95": 0.177
+   },
+   "energy": {
+    "auroc": 0.9740471243858337,
+    "fpr95": 0.124
+   },
+   "max_logit": {
+    "auroc": 0.9727939963340759,
+    "fpr95": 0.138
+   },
+   "false_accept_at_certified_threshold": 0.135
+  },
+  "clinc_test_typo05": {
+   "accuracy": 0.822,
+   "coverage": 0.7504444444444445,
+   "silent_error_rate": 0.04649096831507255
+  },
+  "clinc_test_typo15": {
+   "accuracy": 0.536,
+   "coverage": 0.4295555555555556,
+   "silent_error_rate": 0.10812209001551992
+  },
+  "latency_ms_p50": 4.315937520004809
+ },
+ "banking77": {
+  "accuracy": 0.9253246753246753,
+  "fit_s": 255.2,
+  "epochs": 4,
+  "aurc": 0.011483583522285337,
+  "oracle_cov@0.01": 0.7581168831168831,
+  "fs@0.01": {
+   "thr": 0.9460000395774841,
+   "coverage": 0.6042207792207792,
+   "silent_error_rate": 0.007522837184309511,
+   "silent_errors": 14,
+   "answered": 1861,
+   "upper95": 0.011735677860542604
+  },
+  "oracle_cov@0.02": 0.8535714285714285,
+  "fs@0.02": {
+   "thr": 0.8929513096809387,
+   "coverage": 0.7779220779220779,
+   "silent_error_rate": 0.012103505843071787,
+   "silent_errors": 29,
+   "answered": 2396,
+   "upper95": 0.01646655841222524
+  },
+  "oracle_cov@0.05": 0.9532467532467532,
+  "fs@0.05": {
+   "thr": 0.6468782424926758,
+   "coverage": 0.9149350649350649,
+   "silent_error_rate": 0.03726046841731725,
+   "silent_errors": 105,
+   "answered": 2818,
+   "upper95": 0.04367501604687579
+  },
+  "latency_ms_p50": 4.645229433663189
+ },
+ "_meta": {
+  "written": "2026-11-11 20:14:29",
+  "host": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.12.15"
+ }
+}

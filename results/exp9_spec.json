@@ -1,0 +1,157 @@
+{
+ "n_observed": 60,
+ "n_admission": 40,
+ "fields": {
+  "years_experience": {
+   "candidates": {
+    "y_explicit_max else y_since_first_job(now=2018)": 0.567,
+    "y_explicit_max else y_since_first_job(now=2021)": 0.55,
+    "y_explicit_max else y_since_first_job(now=2020)": 0.533,
+    "y_explicit_max else y_since_first_job(now=2017)": 0.517,
+    "y_explicit_max else y_since_first_job(now=2022)": 0.5,
+    "y_explicit_max else y_since_first_job(now=2019)": 0.483,
+    "y_since_first_job(now=2018)": 0.467,
+    "y_since_first_job(now=2021)": 0.467,
+    "y_explicit_max else y_since_first_job(now=2016)": 0.467,
+    "y_explicit_first else y_span": 0.45,
+    "y_since_first_job(now=2020)": 0.45,
+    "y_since_first_job(now=2022)": 0.45,
+    "y_explicit_max else y_span": 0.433,
+    "y_since_first_job(now=2017)": 0.433,
+    "y_explicit_max else y_since_first_job(now=2023)": 0.433,
+    "y_explicit_max else y_since_first_job(now=2024)": 0.433,
+    "y_explicit_first else y_ranges": 0.417,
+    "y_since_first_job(now=2019)": 0.4,
+    "y_since_first_job(now=2023)": 0.383,
+    "y_span": 0.367,
+    "y_since_first_job(now=2016)": 0.367,
+    "y_explicit_max else y_since_first_job(now=2025)": 0.367,
+    "y_since_first_job(now=2024)": 0.35,
+    "y_ranges else y_explicit_max": 0.317,
+    "y_ranges": 0.3,
+    "y_ranges else y_span": 0.3,
+    "y_since_first_job(now=2025)": 0.267,
+    "y_explicit_first": 0.25,
+    "y_explicit_max": 0.233
+   },
+   "chosen": "y_explicit_max else y_since_first_job(now=2018)",
+   "rejected_ungrounded": {},
+   "observed_agreement": 0.567,
+   "admission_agreement": 0.55,
+   "admission_coverage": 1.0,
+   "bar": 0.8,
+   "admitted": false,
+   "compiled_to": "narrow LLM hole"
+  },
+  "education_level": {
+   "candidates": {
+    "e_any_strict": 0.45,
+    "e_section_strict_else_any": 0.433,
+    "e_section_loose": 0.4,
+    "e_section_strict": 0.367,
+    "e_any_loose": 0.333
+   },
+   "chosen": "e_any_strict",
+   "rejected_ungrounded": {
+    "e_keyword_else_bachelor": 0.7
+   },
+   "observed_agreement": 0.45,
+   "admission_agreement": 0.325,
+   "admission_coverage": 1.0,
+   "bar": 0.85,
+   "admitted": false,
+   "compiled_to": "narrow LLM hole"
+  },
+  "current_title": {
+   "candidates": {
+    "t_heading": 0.917,
+    "t_first_job else t_heading": 0.483,
+    "t_first_job": 0.367
+   },
+   "chosen": "t_heading",
+   "rejected_ungrounded": {},
+   "observed_agreement": 0.917,
+   "admission_agreement": 0.875,
+   "admission_coverage": 1.0,
+   "bar": 0.8,
+   "admitted": true,
+   "compiled_to": "code"
+  },
+  "skills": {
+   "candidates": {
+    "s_gazetteer": 0.553,
+    "s_section else s_gazetteer": 0.172,
+    "s_section": 0.114
+   },
+   "chosen": "s_gazetteer",
+   "rejected_ungrounded": {},
+   "observed_agreement": 0.553,
+   "admission_agreement": 0.287,
+   "admission_coverage": 1.0,
+   "bar": 0.5,
+   "admitted": false,
+   "compiled_to": "narrow LLM hole"
+  },
+  "field": {
+   "candidates": {
+    "f_heading_keyword": 0.533,
+    "f_heading_or_title_keyword": 0.533
+   },
+   "chosen": "f_heading_keyword",
+   "rejected_ungrounded": {},
+   "observed_agreement": 0.533,
+   "admission_agreement": 0.833,
+   "admission_coverage": 0.6,
+   "bar": 0.9,
+   "admitted": false,
+   "compiled_to": "narrow LLM hole"
+  },
+  "seniority": {
+   "candidates": {
+    "decision tree(depth 3) on years + title keywords": 0.75
+   },
+   "chosen": "decision tree",
+   "observed_agreement": 0.75,
+   "admission_agreement": 0.675,
+   "bar": 0.8,
+   "majority_class_baseline": 0.7,
+   "admitted": false,
+   "compiled_to": "narrow LLM hole"
+  },
+  "strengths": {
+   "type": "free text",
+   "compiled_to": "generation hole fed by compact facts (or a template)"
+  },
+  "gaps": {
+   "type": "free text",
+   "compiled_to": "generation hole fed by compact facts (or a template)"
+  },
+  "summary": {
+   "type": "free text",
+   "compiled_to": "generation hole fed by compact facts (or a template)"
+  }
+ },
+ "agent_audit": {
+  "runs_audited": 100,
+  "profiles_with_no_education_evidence_in_input": 44,
+  "of_those_agent_still_reported_a_degree": 33,
+  "agent_reported_bachelor_overall": 0.68
+ },
+ "field_rule_vs_human": {
+  "rows": 100,
+  "rule_answers": 66,
+  "rule_matches_human_label": 0.8333333333333334,
+  "agent_matches_human_label_same_rows": 0.6666666666666666,
+  "rule_matches_agent": 0.7878787878787878
+ },
+ "agent_field_vs_human_label_on_observed": 0.6,
+ "tokens_per_agent_run": {
+  "prompt": 1934.8222222222223,
+  "generated": 181.63888888888889
+ },
+ "_meta": {
+  "written": "2026-11-11 20:49:10",
+  "host": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.12.15"
+ }
+}

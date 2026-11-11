@@ -1,0 +1,250 @@
+{
+ "clinc150": {
+  "classes": 150,
+  "splits": {
+   "train": {
+    "n": 15000,
+    "sha": "d0224766cd35bae3"
+   },
+   "cal": {
+    "n": 3000,
+    "sha": "9cb1a27c824d8cfb"
+   },
+   "test": {
+    "n": 4500,
+    "sha": "4dfe07ecbb01baff"
+   }
+  }
+ },
+ "banking77": {
+  "classes": 77,
+  "splits": {
+   "train": {
+    "n": 8005,
+    "sha": "7a4868dce849928f"
+   },
+   "cal": {
+    "n": 1998,
+    "sha": "5ff4b4f554257051"
+   },
+   "test": {
+    "n": 3080,
+    "sha": "b1bd2086b5bfadbc"
+   }
+  }
+ },
+ "massive60": {
+  "classes": 60,
+  "splits": {
+   "train": {
+    "n": 11514,
+    "sha": "9876768ce89b3ff4"
+   },
+   "cal": {
+    "n": 2033,
+    "sha": "8478f7288f52fe4a"
+   },
+   "test": {
+    "n": 2974,
+    "sha": "586af142530b072f"
+   }
+  }
+ },
+ "clinc_oos": {
+  "train": {
+   "n": 100,
+   "sha": "de16d7aac955d14a"
+  },
+  "val": {
+   "n": 100,
+   "sha": "65ce7ed10f5200fe"
+  },
+  "test": {
+   "n": 1000,
+   "sha": "16159a6f5d7a3c44"
+  }
+ },
+ "clinc_routing": {
+  "frozen_seed": 7,
+  "classes": 10,
+  "groups": {
+   "train": 90,
+   "cal": 30,
+   "test": 30
+  },
+  "test_groups": [
+   "accept_reservations",
+   "calendar_update",
+   "card_declined",
+   "change_accent",
+   "change_user_name",
+   "confirm_reservation",
+   "expiration_date",
+   "flight_status",
+   "freeze_account",
+   "gas",
+   "goodbye",
+   "insurance",
+   "international_visa",
+   "last_maintenance",
+   "lost_luggage",
+   "measurement_conversion",
+   "new_card",
+   "payday",
+   "restaurant_reviews",
+   "roll_dice",
+   "rollover_401k",
+   "schedule_maintenance",
+   "smart_home",
+   "spending_history",
+   "time",
+   "transfer",
+   "what_is_your_name",
+   "what_song",
+   "who_do_you_work_for",
+   "yes"
+  ],
+  "cal_groups": [
+   "are_you_a_bot",
+   "book_flight",
+   "cancel_reservation",
+   "car_rental",
+   "change_language",
+   "credit_limit",
+   "directions",
+   "food_last",
+   "how_old_are_you",
+   "improve_credit_score",
+   "international_fees",
+   "make_call",
+   "maybe",
+   "min_payment",
+   "oil_change_how",
+   "pin_change",
+   "plug_type",
+   "pto_balance",
+   "pto_request_status",
+   "reminder_update",
+   "restaurant_reservation",
+   "routing",
+   "schedule_meeting",
+   "share_location",
+   "sync_device",
+   "text",
+   "todo_list",
+   "traffic",
+   "update_playlist",
+   "what_are_your_hobbies"
+  ],
+  "splits": {
+   "train": {
+    "n": 9000,
+    "sha": "740f447c4f97338a"
+   },
+   "cal_seen": {
+    "n": 1800,
+    "sha": "4361fab4af09ebb3"
+   },
+   "cal_unseen": {
+    "n": 4500,
+    "sha": "71065ce415200275"
+   },
+   "test_seen": {
+    "n": 2700,
+    "sha": "3d8ce04e0d1930ae"
+   },
+   "test_unseen": {
+    "n": 4500,
+    "sha": "a413af973b5490cb"
+   }
+  }
+ },
+ "massive_routing": {
+  "frozen_seed": 7,
+  "classes": 18,
+  "groups": {
+   "train": 34,
+   "cal": 13,
+   "test": 13
+  },
+  "test_groups": [
+   "alarm_query",
+   "audio_volume_up",
+   "calendar_query",
+   "email_query",
+   "general_greet",
+   "iot_hue_lightdim",
+   "iot_wemo_on",
+   "lists_createoradd",
+   "music_dislikeness",
+   "play_game",
+   "qa_currency",
+   "recommendation_events",
+   "transport_query"
+  ],
+  "cal_groups": [
+   "alarm_set",
+   "audio_volume_mute",
+   "calendar_remove",
+   "email_querycontact",
+   "general_quirky",
+   "iot_hue_lightoff",
+   "iot_hue_lightup",
+   "lists_query",
+   "music_query",
+   "play_radio",
+   "qa_factoid",
+   "recommendation_movies",
+   "transport_taxi"
+  ],
+  "splits": {
+   "train": {
+    "n": 6415,
+    "sha": "513a9b86adc93bf4"
+   },
+   "cal_seen": {
+    "n": 1160,
+    "sha": "cdaf76bdcfe255b7"
+   },
+   "cal_unseen": {
+    "n": 4109,
+    "sha": "e44678aa1ecee27b"
+   },
+   "test_seen": {
+    "n": 1692,
+    "sha": "a6f3cdc5a0d84729"
+   },
+   "test_unseen": {
+    "n": 3145,
+    "sha": "fddd7912dc1fb41e"
+   }
+  }
+ },
+ "massive_de-DE": {
+  "n_test": 2974
+ },
+ "massive_es-ES": {
+  "n_test": 2974
+ },
+ "massive_fr-FR": {
+  "n_test": 2974
+ },
+ "massive_tr-TR": {
+  "n_test": 2974
+ },
+ "massive_ja-JP": {
+  "n_test": 2974
+ },
+ "news": {
+  "n": 206581,
+  "from": "2012-01-28",
+  "to": "2022-09-23",
+  "classes": 31,
+  "sha": "3f92e11bd0532a62"
+ },
+ "_meta": {
+  "written": "2026-11-11 19:16:28",
+  "host": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.12.15"
+ }
+}

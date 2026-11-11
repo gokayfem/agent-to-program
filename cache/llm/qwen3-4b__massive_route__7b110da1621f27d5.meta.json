@@ -1,0 +1,27 @@
+{
+ "model": "qwen3-4b",
+ "hole": "massive_route",
+ "version": "7b110da1621f27d5",
+ "choices": [
+  "alarm",
+  "audio",
+  "calendar",
+  "cooking",
+  "datetime",
+  "email",
+  "general",
+  "iot",
+  "lists",
+  "music",
+  "news",
+  "play",
+  "qa",
+  "recommendation",
+  "social",
+  "takeaway",
+  "transport",
+  "weather"
+ ],
+ "none_label": "none_of_these",
+ "instruction": "You route a user's request to a voice assistant to exactly one category.\nCategories, each with examples of request types it already handles (it also handles other, similar request types that are not listed):\n- alarm: e.g. alarm remove\n- audio: e.g. audio volume down, audio volume other\n- calendar: e.g. calendar set\n- cooking: e.g. cooking query, cooking recipe\n- datetime: e.g. datetime convert, datetime query\n- email: e.g. email addcontact, email sendemail\n- general: e.g. general joke\n- iot: e.g. iot cleaning, iot coffee, iot hue lightchange, iot hue lighton, iot wemo off\n- lists: e.g. lists remove\n- music: e.g. music likeness, music settings\n- news: e.g. news query\n- play: e.g. play audiobook, play music, play podcasts\n- qa: e.g. qa definition, qa maths, qa stock\n- recommendation: e.g. recommendation locations\n- social: e.g. social post, social query\n- takeaway: e.g. takeaway order, takeaway query\n- transport: e.g. transport ticket, transport traffic\n- weather: e.g. weather query\n- none_of_these: the request does not belong to any category above.\nExamples:\n\"remove my earliest alarm for tomorrow\" -> alarm\n\"lower speaker volume\" -> audio\n\"change the volume of the speakers\" -> audio\n\"can you enter an event to my calendar\" -> calendar\n\"olly can i use brown sugar instead of white in peanut butter cookies\" -> cooking\n\"olly how do i cook a pasta\" -> cooking\n\"what time will it be locally at nine am bangalore india time\" -> datetime\n\"what's the time\" -> datetime\n\"store my contacts\" -> email\n\"drop a message to jan write i will be late\" -> email\n\"tell me a good doctor joke\" -> general\n\"vacuum the house olly\" -> iot\n\"make coffee\" -> iot\n\"turn the lights blue\" -> iot\n\"turn on the lights\" -> iot\n\"please turn off my smart plug socket\" -> iot\n\"please remove tricep pull down from my workout list\" -> lists\n\"remember this music\" -> music\n\"please turn on repeat all\" -> music\n\"is narendra modi the indian prime minister visiting any country now\" -> news\n\"alexa resume joes book from where i left off last time\" -> play\n\"after this one play song\" -> play\n\"can you play the podcast from tomatojuicecom\" -> play\n\"define philosophy\" -> qa\n\"if i have fifty dollars and spend twenty four how many dollars will i have left\" -> qa\n\"amazon stock price\" -> qa\n\"where is the nearest olive garden\" -> recommendation\n\"send a message to national grid that the power is out again\" -> social\n\"give me some funny facebook posts\" -> social\n\"i want to order a takeaway from papa john's\" -> takeaway\n\"does this place do takeaway\" -> takeaway\n\"olly i need to get to bristol friday night can you book me a ticket please\" -> transport\n\"how bad is the traffic near the airport\" -> transport\n\"is the sun gonna shine in devon this weekend\" -> weather\nReply with only the category name, nothing else."
+}
