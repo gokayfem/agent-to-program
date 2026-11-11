@@ -38,6 +38,7 @@ URLS = {
     "banking_test.csv": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/master/banking_data/test.csv",
     "massive.tar.gz": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.0.tar.gz",
     "news.json": "https://huggingface.co/datasets/heegyu/news-category-dataset/resolve/main/data.json",
+    "resumes.csv": "https://huggingface.co/datasets/opensporks/resumes/resolve/main/Resume/Resume.csv",
 }
 MASSIVE_LOCALES = ("en-US", "de-DE", "es-ES", "fr-FR", "tr-TR", "ja-JP")
 

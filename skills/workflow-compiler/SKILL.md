@@ -9,7 +9,7 @@ Turn a workflow that a model solves from scratch on every run into a program tha
 
 Compiling moves the model; it rarely removes it. The aim is that each remaining model call is small, typed, at a fixed point, and testable on its own.
 
-Version 2 changes the calibration, verification and operating rules. Each change is backed by an experiment on public human-labelled data with real local models; the numbers quoted here are from that study (`REPORT.md` in the project this skill was built in). They describe those tasks and models, so re-measure on yours.
+Version 2 changes the calibration, verification and operating rules. Each change is backed by an experiment on public human-labelled data with real local models; the numbers quoted here are from that study ([REPORT.md](https://github.com/gokayfem/agent-to-program/blob/main/REPORT.md)). They describe those tasks and models, so re-measure on yours.
 
 ## What you need first
 

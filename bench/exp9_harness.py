@@ -36,6 +36,7 @@ import numpy as np
 import pandas as pd
 
 from .common import CACHE, RAW, save_json
+from .data import fetch
 
 HDIR = CACHE / "harness"
 HDIR.mkdir(parents=True, exist_ok=True)
@@ -57,8 +58,7 @@ def profiles() -> pd.DataFrame:
     return pick
 
 
-FIELDS = sorted(pd.read_csv(RAW / "resumes.csv", usecols=["Category"]).Category.unique()) \
-    if (RAW / "resumes.csv").exists() else []
+FIELDS = sorted(pd.read_csv(fetch("resumes.csv"), usecols=["Category"]).Category.unique())   # downloads on first use
 
 
 # --------------------------------------------------------------------------- the uncompiled agent

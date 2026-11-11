@@ -1,0 +1,21 @@
+{
+  "name": "agent-to-program",
+  "displayName": "Agent 2 Program",
+  "version": "0.1.0",
+  "description": "Compile a recurring LLM or agent workflow into a fast, mostly deterministic program: typed decisions answered by the cheapest tier that is sure, a decision model that abstains and is calibrated against held-out groups, an independent verifier, admission tests with seeded bad inputs, shadow sampling with circuit breakers, regression-gated updates, and a wrapper harness that compiles an agent from its recorded runs.",
+  "author": {
+    "name": "gokayfem",
+    "url": "https://github.com/gokayfem"
+  },
+  "homepage": "https://github.com/gokayfem/agent-to-program",
+  "repository": "https://github.com/gokayfem/agent-to-program",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "llm",
+    "workflow",
+    "compiler",
+    "calibration",
+    "verification"
+  ]
+}

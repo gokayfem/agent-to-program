@@ -1,0 +1,22 @@
+{
+  "name": "agent-to-program",
+  "description": "Turn a workflow an agent has already solved into a program, with coding agents",
+  "owner": {
+    "name": "gokayfem",
+    "url": "https://github.com/gokayfem"
+  },
+  "plugins": [
+    {
+      "name": "agent-to-program",
+      "source": "./",
+      "description": "Compile a recurring LLM workflow into code plus typed model calls: tiered decisions, calibration against unseen groups, independent verification, admission tests, shadow sampling and a trace-observing harness",
+      "category": "development",
+      "tags": [
+        "agents",
+        "llm",
+        "workflow",
+        "compiler"
+      ]
+    }
+  ]
+}

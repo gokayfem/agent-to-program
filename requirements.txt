@@ -1,0 +1,11 @@
+numpy
+scipy
+scikit-learn
+pandas
+pyarrow
+joblib
+torch
+sentence-transformers
+model2vec
+mlx-lm
+matplotlib

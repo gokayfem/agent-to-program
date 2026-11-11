@@ -587,7 +587,7 @@ def closing() -> str:
           "result in this report depends on them.\n\n")
     s += "## 14. Files\n\n"
     s += ("`REPORT.md` (this file) · `README.md` (layout and commands to reproduce) · `results/*.json` (every number) · `bench/` (experiments) · "
-          "`skill/workflow-compiler/` and `workflow-compiler-v2.skill` (the skill revised with these results; 23 tests) · "
+          "`skills/workflow-compiler/` and `workflow-compiler-v2.skill` (the skill revised with these results; 23 tests) · "
           "`wfc/` and `tests/` (kernel) · `cache/llm/*.jsonl` (stored LLM answers with raw text and token probabilities) · "
           "`cache/harness/traces.jsonl` (recorded agent runs) · `logs/pip_freeze.txt` (exact package versions).\n")
     return s
