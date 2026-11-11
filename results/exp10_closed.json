@@ -1,0 +1,213 @@
+{
+ "model": "opus-5.5-medium",
+ "compared_with": "qwen3-4b",
+ "protocol": "Claude Code subagents, blind batches of about 220 requests, one label per request; not one API call per request; no latency or token probabilities",
+ "n_requests": 1949,
+ "populations": {
+  "seen groups": {
+   "opus-5.5-medium": {
+    "n": 450,
+    "correct": 0.9866666666666667,
+    "none_exit": 0.008888888888888889,
+    "unparseable": 0.0,
+    "wrong_answers_per_request": 0.0044444444444444444
+   },
+   "qwen3-4b": {
+    "n": 450,
+    "correct": 0.9644444444444444,
+    "none_exit": 0.0044444444444444444,
+    "unparseable": 0.0,
+    "wrong_answers_per_request": 0.03111111111111111
+   }
+  },
+  "never-seen groups": {
+   "opus-5.5-medium": {
+    "n": 450,
+    "correct": 0.9488888888888889,
+    "none_exit": 0.03777777777777778,
+    "unparseable": 0.0,
+    "wrong_answers_per_request": 0.013333333333333334
+   },
+   "qwen3-4b": {
+    "n": 450,
+    "correct": 0.7755555555555556,
+    "none_exit": 0.024444444444444446,
+    "unparseable": 0.0,
+    "wrong_answers_per_request": 0.2
+   }
+  },
+  "out of scope": {
+   "opus-5.5-medium": {
+    "n": 300,
+    "correct": 0.9566666666666667,
+    "none_exit": 0.9566666666666667,
+    "unparseable": 0.0,
+    "wrong_answers_per_request": 0.043333333333333335
+   },
+   "qwen3-4b": {
+    "n": 300,
+    "correct": 0.47,
+    "none_exit": 0.47,
+    "unparseable": 0.0,
+    "wrong_answers_per_request": 0.53
+   }
+  },
+  "seen groups, 15% keyboard noise": {
+   "opus-5.5-medium": {
+    "n": 200,
+    "correct": 0.98,
+    "none_exit": 0.02,
+    "unparseable": 0.0,
+    "wrong_answers_per_request": 0.0
+   },
+   "qwen3-4b": {
+    "n": 200,
+    "correct": 0.835,
+    "none_exit": 0.115,
+    "unparseable": 0.005,
+    "wrong_answers_per_request": 0.045
+   }
+  }
+ },
+ "bad_inputs": {
+  "opus-5.5-medium": {
+   "far_domain": {
+    "n": 20,
+    "answered_in_scope": 0
+   },
+   "gibberish": {
+    "n": 60,
+    "answered_in_scope": 0
+   },
+   "injection": {
+    "n": 12,
+    "answered_in_scope": 1
+   },
+   "keyboard_mash": {
+    "n": 40,
+    "answered_in_scope": 0
+   },
+   "structural": {
+    "n": 17,
+    "answered_in_scope": 1
+   },
+   "missing": 0
+  },
+  "qwen3-4b": {
+   "far_domain": {
+    "n": 20,
+    "answered_in_scope": 7
+   },
+   "gibberish": {
+    "n": 60,
+    "answered_in_scope": 0
+   },
+   "injection": {
+    "n": 12,
+    "answered_in_scope": 11
+   },
+   "keyboard_mash": {
+    "n": 40,
+    "answered_in_scope": 0
+   },
+   "structural": {
+    "n": 17,
+    "answered_in_scope": 3
+   },
+   "missing": 0
+  }
+ },
+ "changed_contract": {
+  "opus-5.5-medium": {
+   "rerouted_n": 90,
+   "rerouted_correct": 0.9444444444444444,
+   "rerouted_still_old_label": 0.011111111111111112,
+   "not_covered_n": 150,
+   "not_covered_correct": 0.9733333333333334,
+   "not_covered_moved_by_mistake": 0.02,
+   "control_n": 160,
+   "control_correct": 0.99375
+  },
+  "qwen3-4b": {
+   "rerouted_n": 90,
+   "rerouted_correct": 0.9888888888888889,
+   "rerouted_still_old_label": 0.011111111111111112,
+   "not_covered_n": 150,
+   "not_covered_correct": 0.8666666666666667,
+   "not_covered_moved_by_mistake": 0.12666666666666668,
+   "control_n": 160,
+   "control_correct": 0.95
+  }
+ },
+ "same_wrong_answer_as_fast_model_on_unseen": {
+  "opus-5.5-medium": {
+   "fast_errors": 126,
+   "also_wrong": 0.09523809523809523,
+   "same_wrong_label": 0.03968253968253968
+  },
+  "qwen3-4b": {
+   "fast_errors": 126,
+   "also_wrong": 0.49206349206349204,
+   "same_wrong_label": 0.3333333333333333
+  }
+ },
+ "stacks_mix_70_20_10": {
+  "opus-5.5-medium": {
+   "always-LLM": {
+    "wrong": 0.010111111111111112,
+    "llm_calls": 0.9999999999999999,
+    "agent": 0.10944444444444446,
+    "local": 0.0
+   },
+   "fast[R] -> LLM": {
+    "wrong": 0.092,
+    "llm_calls": 0.12,
+    "agent": 0.04555555555555556,
+    "local": 0.8799999999999999
+   },
+   "fast[G]+V -> LLM": {
+    "wrong": 0.018444444444444444,
+    "llm_calls": 0.4481111111111111,
+    "agent": 0.10777777777777778,
+    "local": 0.5518888888888889
+   },
+   "fast[G]+V -> agent": {
+    "wrong": 0.009444444444444445,
+    "llm_calls": 0.0,
+    "agent": 0.4481111111111111,
+    "local": 0.5518888888888889
+   }
+  },
+  "qwen3-4b": {
+   "always-LLM": {
+    "wrong": 0.11477777777777778,
+    "llm_calls": 0.9999999999999999,
+    "agent": 0.055,
+    "local": 0.0
+   },
+   "fast[R] -> LLM": {
+    "wrong": 0.13122222222222224,
+    "llm_calls": 0.12,
+    "agent": 0.022555555555555558,
+    "local": 0.8799999999999999
+   },
+   "fast[G]+V -> LLM": {
+    "wrong": 0.10766666666666667,
+    "llm_calls": 0.4481111111111111,
+    "agent": 0.05433333333333334,
+    "local": 0.5518888888888889
+   },
+   "fast[G]+V -> agent": {
+    "wrong": 0.009444444444444445,
+    "llm_calls": 0.0,
+    "agent": 0.4481111111111111,
+    "local": 0.5518888888888889
+   }
+  }
+ },
+ "_meta": {
+  "written": "2026-11-11 23:06:13",
+  "host": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.12.15"
+ }
+}

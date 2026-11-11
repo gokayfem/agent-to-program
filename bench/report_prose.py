@@ -300,10 +300,20 @@ def f_sec_e6() -> str:
           f"{pct(P['B*']['total']['wrong'], 0)} wrong answers; the guarded tier (C*) delivers {pct(P['C*']['by_phase']['2']['wrong'], 1)} when new groups "
           f"arrive, {pct(P['C*']['by_phase']['3']['wrong'], 1)} in the out-of-scope burst and {pct(P['C*']['by_phase']['4']['wrong'], 1)} on noisy input, "
           f"by escalating instead of answering ({pct(P['C*']['total']['agent'], 0)} of requests).\n")
+    p5 = r["phases"]["5"]
+    n5, n_aff = p5["n"], p5["kinds"].get("affected", 0)
     s += (f"- A change of contract is the drift no input-side guard can see: the requests look familiar and the program is confident, so "
-          f"{pct(P['C*']['phase5_affected']['wrong'], 0)} of re-routed requests are answered under the old policy. Shadow sampling finds it, slowly: "
-          f"at a 10% rate the breaker opened after {sw['0.1']['requests_until_breaker']} requests, at 40% after {sw['0.4']['requests_until_breaker']}. "
-          f"Announcing the change and invalidating the affected answer class at once (D+*) leaves {pct(P['D+*']['phase5_affected']['wrong'], 0)} wrong. "
+          f"{pct(P['C*']['phase5_affected']['wrong'], 0)} of re-routed requests are answered under the old policy. ")
+    late = [k for k, v in sw.items() if v["requests_until_breaker"] is None or v["requests_until_breaker"] >= n5]
+    intime = [(k, v) for k, v in sw.items() if k not in late]
+    s += (f"Shadow sampling is slow to find it, because the re-routed requests are only {pct(n_aff / n5, 0)} of the traffic after the change. ")
+    if late:
+        s += (f"At a shadow rate of {' and '.join(pct(float(k), 0) for k in late)} the breaker opened only in the last block of the stream, "
+              f"{n5} requests after the change, so no request benefited. ")
+    if intime:
+        s += ("; ".join(f"at {pct(float(k), 0)} it opened after {v['requests_until_breaker']} requests and {pct(v['wrong_on_rerouted'], 0)} of "
+                        "re-routed requests were still answered wrongly" for k, v in intime) + ". ").replace("at ", "At ", 1)
+    s += (f"Announcing the change and invalidating the affected answer class at once (D+*) leaves {pct(P['D+*']['phase5_affected']['wrong'], 0)} wrong. "
           "A contract version belongs in every compiled answer's guard.\n")
     es = P["E*"]
     dep = [e for e in es["events"] if e["event"] == "recompile"]
@@ -318,18 +328,29 @@ def f_sec_e6() -> str:
     ep = P["E'*"]
     last_e = [e for e in es["events"] if e["event"] == "recompile"][-1]
     last_p = [e for e in ep["events"] if e["event"] == "recompile"][-1]
-    s += (f"After the contract change the candidate looked {num(100 * (last_p['regression_acc'][0] - last_p['regression_acc'][1]), 1)} points worse on the "
-          f"stale regression suite and {num(100 * (last_e['regression_acc'][0] - last_e['regression_acc'][1]), 1)} points worse on the re-adjudicated one "
-          f"({es['regression_readjudication_agent_calls']} cases sent to the agent): a suite that encodes the old contract penalises exactly the update "
-          "that is needed, and it has to be re-adjudicated when the contract changes.\n")
+    d_stale = 100 * (last_p["regression_acc"][1] - last_p["regression_acc"][0])
+    d_fresh = 100 * (last_e["regression_acc"][1] - last_e["regression_acc"][0])
+    verdict = lambda e: "deployed" if e["admitted"] else "rejected"
+    s += (f"After the contract change the breaker opened {last_e['t'] - r['change_at']} requests in and triggered a recompile. That candidate "
+          f"scored {d_stale:+.1f} points against the stale regression suite ({verdict(last_p)}) and {d_fresh:+.1f} points against the "
+          f"re-adjudicated one ({verdict(last_e)}; {es['regression_readjudication_agent_calls']} cases sent to the agent). ")
+    if d_fresh > d_stale:
+        s += ("A suite that encodes the old contract is biased against the update that is needed and should be re-adjudicated when the "
+              "contract changes; with three request types re-routed the bias was small here and did not change the decision. ")
+    s += (f"With recompiles, {pct(es['phase5_affected']['wrong'], 0)} of re-routed requests were still answered under the old policy "
+          f"(E*), against {pct(P['E+*']['phase5_affected']['wrong'], 0)} when the change is announced first (E+*): the announcement switches the "
+          "class off, and the next admitted recompile switches it back on with a model that has seen only a few post-change labels.\n")
     s += (f"- Ungated self-training is the worst policy in the loop ({pct(P['F*']['total']['wrong'], 0)} wrong with the agent as fallback, "
           f"{pct(P['F']['total']['wrong'], 0)} with the LLM): it has the highest fast share and learns its own mistakes.\n")
     s += (f"- With the local LLM as fallback everything is noisier, because the LLM itself is wrong on {pct(P['A']['total']['wrong'], 0)} of this stream "
-          f"({pct(P['A']['by_phase']['3']['wrong'], 0)} in the out-of-scope burst) and follows the changed contract on only "
-          f"{pct(1 - P['A']['phase5_affected']['wrong'], 0)} of re-routed requests. The guarded stack (C) matches it before the policy change with "
-          f"{num(P['C']['total']['llm_calls'], 2)} calls per request, and an LLM shadow checker is too noisy and too slow to trip the breaker in time "
-          f"(D equals C here). In the first phase its shadow estimate is {pct(P['D']['by_phase']['1']['shadow_est'], 0)} while the fast tier's true "
-          f"silent rate is {pct(P['D']['by_phase']['1']['wrong_fast'], 0)}: those disagreements are the checker's errors.\n")
+          f"({pct(P['A']['by_phase']['3']['wrong'], 0)} in the out-of-scope burst). The changed contract is not its problem: given the new "
+          f"contract it routes {pct(1 - P['A']['phase5_affected']['wrong'], 0)} of re-routed requests correctly, which is why always-LLM (A) is the "
+          f"best policy in phase 5 ({pct(P['A']['by_phase']['5']['wrong'], 1)} wrong against {pct(P['C']['by_phase']['5']['wrong'], 1)} for the "
+          f"guarded stack). The LLM reads the contract at run time; the compiled tier froze it. Before the policy change the guarded stack (C) "
+          f"matches always-LLM with {num(P['C']['total']['llm_calls'], 2)} calls per request. At a 10% rate neither checker opens the breaker before "
+          f"the stream ends (D equals C, D* equals C*), and an LLM checker adds noise of its own: in the first phase its shadow estimate is "
+          f"{pct(P['D']['by_phase']['1']['shadow_est'], 0)} while the fast tier's true silent rate is "
+          f"{pct(P['D']['by_phase']['1']['wrong_fast'], 0)}; those disagreements are the checker's errors.\n")
     return s
 
 
@@ -409,9 +430,50 @@ def f_sec_e9() -> str:
     return s
 
 
+def f_sec_e10() -> str:
+    r = J("exp10_closed.json")
+    if not r:
+        return ""
+    m, loc = r["model"], r["compared_with"]
+    pp, b, c = r["populations"], r["bad_inputs"], r["changed_contract"]
+    w, st = r["same_wrong_answer_as_fast_model_on_unseen"], r["stacks_mix_70_20_10"]
+    un, oos, ty = pp["never-seen groups"], pp["out of scope"], pp["seen groups, 15% keyboard noise"]
+    s = "**What this shows**\n\n"
+    s += (f"- The weaknesses of the LLM tier in Experiments 5 to 8 belong to the small local model, not to the design. On never-seen groups "
+          f"the hosted model is right on {pct(un[m]['correct'])} of requests against {pct(un[loc]['correct'])}, and gives a wrong answer on "
+          f"{pct(un[m]['wrong_answers_per_request'])} against {pct(un[loc]['wrong_answers_per_request'])}; most of its misses are the "
+          f"\"none of these\" exit ({pct(un[m]['none_exit'])}), which escalates instead of failing silently. It takes that exit for "
+          f"{pct(oos[m]['none_exit'])} of out-of-scope queries against {pct(oos[loc]['none_exit'])}, and with 15% of letters mistyped it is "
+          f"right on {pct(ty[m]['correct'])} with {pct(ty[m]['wrong_answers_per_request'])} wrong answers against {pct(ty[loc]['correct'])} "
+          f"and {pct(ty[loc]['wrong_answers_per_request'])}.\n")
+    s += (f"- It is hard to push off its contract. Of {b[m]['injection']['n']} prompt-injection strings it gave an in-scope category to "
+          f"{b[m]['injection']['answered_in_scope']}; the local model did so for {b[loc]['injection']['answered_in_scope']}.\n")
+    s += (f"- It is an independent second opinion. When the fast model is wrong on a never-seen group, the hosted model is also wrong "
+          f"{pct(w[m]['also_wrong'], 0)} of the time and gives the same wrong label {pct(w[m]['same_wrong_label'], 0)} of the time; the local "
+          f"LLM {pct(w[loc]['also_wrong'], 0)} and {pct(w[loc]['same_wrong_label'], 0)}.\n")
+    a, n_, g, ag = (st[m][k] for k in ("always-LLM", "fast[R] -> LLM", "fast[G]+V -> LLM", "fast[G]+V -> agent"))
+    la, lg = st[loc]["always-LLM"], st[loc]["fast[G]+V -> LLM"]
+    s += (f"- With a model this good, the compiled tier is the weaker one. Always-LLM delivers {pct(a['wrong'], 2)} wrong answers. A guarded "
+          f"fast tier in front of it delivers {pct(g['wrong'], 2)} and saves {pct(1 - g['llm_calls'], 0)} of the calls; about "
+          f"{pct(ag['wrong'], 2)} of that is the fast tier's own silent errors, the level the gate was calibrated to allow. With the local LLM "
+          f"the same stack was no worse than always-LLM ({pct(lg['wrong'], 1)} against {pct(la['wrong'], 1)}), because the LLM's errors hid "
+          f"the fast tier's. A naive fast tier in front of the hosted model is {pct(n_['wrong'], 1)} wrong: the better the fallback, the more a "
+          "careless compile costs. So the trade is explicit: a compiled tier buys latency and calls at the price of the error budget you "
+          "certify it to, and it has to be certified against a budget set by the model it replaces.\n")
+    s += (f"- Both models follow a changed contract for request types it names ({pct(c[m]['rerouted_correct'], 0)} and "
+          f"{pct(c[loc]['rerouted_correct'], 0)} routed under the new policy). They differ on what the policy does not cover: the hosted model "
+          f"left {pct(c[m]['not_covered_correct'], 0)} of new-card applications where they were, the local model moved "
+          f"{pct(c[loc]['not_covered_moved_by_mistake'], 0)} of them by mistake.\n")
+    s += ("- What this does not show: latency and cost. A hosted call adds a network round trip and per-token cost to every request that "
+          "reaches it, neither of which was measured here, and the batch protocol is easier than one call per request in one respect "
+          "(the model sees neighbouring requests) and no different in the contract it is given.\n")
+    return s
+
+
 def _llm_answer_count() -> tuple:
     from .common import CACHE
-    n = sum(len(f.read_text().splitlines()) for f in (CACHE / "llm").glob("*.jsonl"))
+    n = sum(len(f.read_text().splitlines()) for f in (CACHE / "llm").glob("*.jsonl")
+            if f.name.startswith(("qwen", "gemma")))          # local models only; hosted answers are counted in Experiment 10
     t = CACHE / "harness" / "traces.jsonl"
     k = len(t.read_text().splitlines()) if t.exists() else 0
     return n, k
@@ -425,6 +487,29 @@ def _llm_strength() -> str:
     return (f"The LLM is the stronger tier only where the fast model has seen nothing: {pct(lc['en_unseen']['llm'], 0)} vs "
             f"{pct(lc['en_unseen']['fast:bge-small'], 0)} on never-seen MASSIVE groups, {pct(lc['es-ES_seen']['llm'], 0)} vs "
             f"{pct(lc['es-ES_seen']['fast:bge-small'], 0)} on Spanish versions of familiar requests. ")
+
+
+def _shadow_summary(e6) -> str:
+    sw, n5 = e6["shadow_sweep"], e6["phases"]["5"]["n"]
+    u10, u40 = sw["0.1"]["requests_until_breaker"], sw["0.4"]["requests_until_breaker"]
+    if u10 is None or u10 >= n5:
+        return (f"Re-checking 10% of fast answers did not catch it within the {n5} requests that followed; re-checking 40% took "
+                f"{u40} requests. ")
+    return f"Re-checking 10% of fast answers took {u10} requests to notice, 40% took {u40}. "
+
+
+def _closed_summary() -> str:
+    r = J("exp10_closed.json")
+    if not r:
+        return "A stronger LLM would change these absolute numbers; none was run.\n"
+    m, loc = r["model"], r["compared_with"]
+    pp, st = r["populations"], r["stacks_mix_70_20_10"]
+    return (f"A stronger LLM changes this (Experiment 10): Claude Opus 5.5 at medium effort, on the same rows, is right on "
+            f"{pct(pp['never-seen groups'][m]['correct'], 0)} of unseen-group requests against {pct(pp['never-seen groups'][loc]['correct'], 0)} and "
+            f"takes the exit on {pct(pp['out of scope'][m]['none_exit'], 0)} of out-of-scope queries against "
+            f"{pct(pp['out of scope'][loc]['none_exit'], 0)}. With that model always-LLM delivers {pct(st[m]['always-LLM']['wrong'], 1)} wrong and the "
+            f"guarded stack in front of it {pct(st[m]['fast[G]+V -> LLM']['wrong'], 1)}: the compiled tier becomes the weaker one, and what it "
+            f"buys is {pct(st[m]['fast[G]+V -> LLM']['local'], 0)} of requests answered without a model call.\n")
 
 
 def title_and_summary() -> str:
@@ -444,12 +529,14 @@ def title_and_summary() -> str:
     T = e2["typo_noise"]
     llm_ms = L.get("qwen3-4b/route_1shot", {}).get("p50")
     s = "# LLM as a compiler: what holds up under harder tests\n\n"
-    s += ("Continuation of the shared conversation. The earlier demonstration ran on synthetic expense lines with a stubbed LLM; "
-          "this one runs on public, human-labelled data with real models on this machine. "
+    s += ("An earlier demonstration of this idea ran on synthetic expense lines with a stubbed LLM; "
+          "this one runs on public, human-labelled data with real models on one machine. "
           f"Run on {J('data_manifest.json')['_meta']['written'][:10]}, Apple M4, local compute only.\n\n")
     s += "## Summary\n\n"
-    s += (f"**What was run.** Nine experiments on four public datasets with human labels plus 2,484 public resume profiles; twelve fast-model "
-          f"families; two local LLMs with {n_llm:,} stored real answers, and {n_tr} recorded three-step agent runs; 20 random group splits "
+    e10 = J("exp10_closed.json")
+    closed = (f"; one hosted model (Claude Opus 5.5, medium effort) on {e10['n_requests']:,} of the same held-out requests" if e10 else "")
+    s += (f"**What was run.** {'Ten' if e10 else 'Nine'} experiments on four public datasets with human labels plus 2,484 public resume profiles; twelve fast-model "
+          f"families; two local LLMs with {n_llm:,} stored real answers{closed}, and {n_tr} recorded three-step agent runs; 20 random group splits "
           "wherever no LLM was needed. Every table below is generated from `results/*.json`.\n\n")
     s += "**What it found.**\n\n"
     s += (f"1. **The speed is real, and the amount you can take depends on the task.** A local decision costs "
@@ -489,16 +576,16 @@ def title_and_summary() -> str:
           f"{pct(q['oos_test']['none_exit_rate'], 0)} of out-of-scope queries. A guarded fast tier in front of it delivers the same quality "
           f"({pct(c_['wrong_delivered'], 1)} vs {pct(a_['wrong_delivered'], 1)} wrong on a 70/20/10 mix) with {num(c_['llm_calls'], 2)} calls per "
           f"request instead of 1; with the agent as the only fallback it delivers {pct(f_['wrong_delivered'], 1)} wrong and escalates "
-          f"{pct(f_['escalations'], 0)}. " + _llm_strength() + "A stronger LLM would change these absolute numbers; none was run.\n")
+          f"{pct(f_['escalations'], 0)}. " + _llm_strength() + _closed_summary())
     y = e7["policies"]["static-T"]["by_year"]
     yrs = list(y)
     s += (f"7. **Compiled programs rot, and a contract change is the drift no guard sees.** On {len(e7['months']) / 12:.1f} years of dated headlines a program compiled "
           f"on the first year goes from {pct(y[yrs[0]]['silent_among_fast'], 0)} to {pct(y[yrs[-1]]['silent_among_fast'], 0)} silent errors while still "
           f"answering. In the scripted loop the guards handle new groups, an out-of-scope burst and noise "
           f"({pct(P['C*']['by_phase']['2']['wrong'], 1)}, {pct(P['C*']['by_phase']['3']['wrong'], 1)}, {pct(P['C*']['by_phase']['4']['wrong'], 1)} wrong), "
-          f"but after a policy change {pct(P['C*']['phase5_affected']['wrong'], 0)} of re-routed requests are answered under the old policy until "
-          f"shadow sampling notices ({e6['shadow_sweep']['0.1']['requests_until_breaker']} requests at a 10% rate) or the change is announced "
-          f"({pct(P['D+*']['phase5_affected']['wrong'], 0)}). Retraining on the system's own answers without a gate was the worst policy in the "
+          f"but after a policy change {pct(P['C*']['phase5_affected']['wrong'], 0)} of re-routed requests are answered under the old policy. "
+          + _shadow_summary(e6) +
+          f"Announcing the change brings it to {pct(P['D+*']['phase5_affected']['wrong'], 0)}. Retraining on the system's own answers without a gate was the worst policy in the "
           f"scripted loop ({pct(P['F*']['total']['wrong'], 0)} wrong) and stayed over budget in "
           f"{e7['policies']['self-train']['summary']['months_over_budget']} of {e7['policies']['self-train']['summary']['months_with_fast_tier']} "
           "months on the news stream.\n")
@@ -523,7 +610,10 @@ def title_and_summary() -> str:
         ["Scripted", "The order and mix of traffic in Experiment 6 (five phases), the traffic mixes in Experiment 5, the seeded bad inputs, keyboard noise"],
         ["Assumed", "The agent: wherever a request is escalated, the human label is taken as the agent's answer and assumed correct; its cost is "
          "counted as escalations and never timed"],
-        ["Not run", "Any hosted or frontier model; an agent with tools; GPU latency for the fast tier; real production traffic with repeats"],
+        ["Real answers, different protocol", "Experiment 10: Claude Opus 5.5 (medium effort) answered through Claude Code subagents in blind "
+         "batches of about 220 requests, not one API call per request. No latency, no token probabilities, no measured cost"],
+        ["Not run", "Any hosted model through its API; any OpenAI model (no CLI or key on this machine); an agent with tools; GPU latency "
+         "for the fast tier; real production traffic with repeats"],
     ], "ll") + "\n"
     return s
 
@@ -536,6 +626,11 @@ def _e9_holes() -> str:
     n_hole = sum(1 for v in f.values() if v.get("admitted") is False)
     n = sum(1 for v in f.values() if "admitted" in v)
     return f"{n_hole} of {n} short profile fields"
+
+
+def _e10_n() -> str:
+    r = J("exp10_closed.json")
+    return f"{r['n_requests']:,}" if r else "no"
 
 
 def closing() -> str:
@@ -554,7 +649,8 @@ def closing() -> str:
           "6. **Let the compile step say no.** Some decisions cannot be certified at the budget (MASSIVE at 2%; " + _e9_holes() +
           " in Exp. 9). They stay as narrow typed holes.\n"
           "7. **Admit every tier, including the LLM.** The local LLM's errors dominated every stack it was in, its confidence could not be "
-          "certified, and it answered more than half of the out-of-scope queries as in-scope (Exp. 5, 8).\n"
+          "certified, and it answered more than half of the out-of-scope queries as in-scope (Exp. 5, 8). A frontier model did far better on the "
+          "same rows, and then the fast tier's own errors set the floor (Exp. 10): which tier needs the guard depends on the model, so measure it.\n"
           "8. **Version the contract and invalidate on change.** A contract change is invisible to input-side guards; an announced invalidation "
           "of the affected answer class removed the errors, and the regression suite has to be re-adjudicated at the same time (Exp. 6).\n"
           "9. **Never retrain on unverified own answers.** Gate every update on held-out recent labels and a regression suite; remember that "
@@ -562,8 +658,12 @@ def closing() -> str:
           "10. **Engineer the hole.** Fixed contract prefix with a reused KV cache; closed answer sets; the smallest input that suffices; "
           "batch sizes chosen with the prefix length in mind (Exp. 5, 9).\n\n")
     s += "## 12. Limits of this study\n\n"
-    s += ("- The LLMs are 4-bit local models of about 4B parameters. Every statement about \"the LLM tier\" is about them. The comparison "
-          "between always-LLM and compiled stacks would shift with a stronger model; the fast-tier results would not.\n"
+    s += ("- The LLMs in Experiments 1 to 9 are 4-bit local models of about 4B parameters. Every statement about \"the LLM tier\" outside "
+          "Experiment 10 is about them. Experiment 10 shows how far the comparison between always-LLM and compiled stacks shifts with a "
+          "frontier model; the fast-tier results do not shift.\n"
+          "- Experiment 10 is one hosted model, one effort setting, one frozen split, " + _e10_n() + " requests, answered in batches through "
+          "subagents. A batch lets the model see other requests, which a per-request call would not. Its latency and cost were not measured. "
+          "The policy-change part of the production loop (Experiment 6, phase 5) was not replayed with the hosted model.\n"
           "- The agent is the human label. Human labels in these datasets are themselves imperfect (MASSIVE and the news sections visibly so), "
           "and the CLINC domain taxonomy is partly arbitrary for unseen intents.\n"
           "- One frozen group split carries all LLM-in-the-loop results (Exp. 4, 5, 6, 8). The fast-tier conclusions were checked on 20 splits; "
@@ -575,7 +675,7 @@ def closing() -> str:
           "scoring were mechanical. One model, one workflow, 80 test profiles.\n"
           "- Fast-tier latency was measured on CPU while a GPU job was running; LLM latency is for MLX on an M4 and includes no network.\n\n")
     s += "## 13. The earlier artifact\n\n"
-    s += ("`workflow-compiler.skill` was downloaded from the shared chat and is kept unmodified in `prior_artifact/` "
+    s += ("The first version of `workflow-compiler.skill` came out of an earlier conversation and is not included in this repository "
           "(9 files: SKILL.md, a standard-library runtime, a scikit-learn decision tier, an admission harness, the expense example and "
           "its tests). I read every file. Executing the downloaded code was blocked by this session's permission layer, so **its 14 tests "
           "were not run here and that earlier claim remains unverified**. Instead the runtime and admission harness were re-authored into "
@@ -589,5 +689,6 @@ def closing() -> str:
     s += ("`REPORT.md` (this file) · `README.md` (layout and commands to reproduce) · `results/*.json` (every number) · `bench/` (experiments) · "
           "`skills/workflow-compiler/` and `workflow-compiler-v2.skill` (the skill revised with these results; 23 tests) · "
           "`wfc/` and `tests/` (kernel) · `cache/llm/*.jsonl` (stored LLM answers with raw text and token probabilities) · "
-          "`cache/harness/traces.jsonl` (recorded agent runs) · `logs/pip_freeze.txt` (exact package versions).\n")
+          "`cache/closed/` (the hosted model's batch files, answers and scoring key) · "
+          "`logs/pip_freeze.txt` (exact package versions).\n")
     return s

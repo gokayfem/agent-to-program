@@ -4,7 +4,7 @@ An earlier demonstration of this idea ran on synthetic expense lines with a stub
 
 ## Summary
 
-**What was run.** Nine experiments on four public datasets with human labels plus 2,484 public resume profiles; twelve fast-model families; two local LLMs with 18,529 stored real answers, and 180 recorded three-step agent runs; 20 random group splits wherever no LLM was needed. Every table below is generated from `results/*.json`.
+**What was run.** Ten experiments on four public datasets with human labels plus 2,484 public resume profiles; twelve fast-model families; two local LLMs with 18,529 stored real answers; one hosted model (Claude Opus 5.5, medium effort) on 1,949 of the same held-out requests, and 180 recorded three-step agent runs; 20 random group splits wherever no LLM was needed. Every table below is generated from `results/*.json`.
 
 **What it found.**
 
@@ -13,8 +13,8 @@ An earlier demonstration of this idea ran on synthetic expense lines with a stub
 3. **The fix costs coverage and is not a guarantee.** Calibrating against held-out groups and real out-of-scope queries, with a familiarity score separate from confidence, cuts wrong answers per unseen-group input from 17.6% to 1.6% and familiar coverage from 95% to 63%. It still ended over budget in 35% of splits, because rows from one group fail together.
 4. **A verifier is only as good as it is different.** When the fast model is wrong on an unseen group, a 5-model ensemble on the same embedding gives the same wrong label 70% of the time, a character n-gram model 38%, the LLM 32%. The lexical check adds 0.2 ms and catches 62% of those errors; verification is paid for in false rejects, not milliseconds.
 5. **Embedding models fail silently on noise and on new languages; a lexical model fails honestly.** With 15% of letters mistyped, bge-small is 51% accurate and its confidence gate still answers 53% of requests, 25% of them wrong; character TF-IDF answers 43% with 2.3% wrong. On Turkish versions of English requests the same kind of model answers 26% and gets 84% of those wrong; a similarity floor refuses almost all of them.
-6. **Here the local LLM is the weak tier.** Qwen3-4B is right on 95% of familiar requests and 78% of unseen-group requests and takes the "none of these" exit for only 45% of out-of-scope queries. A guarded fast tier in front of it delivers the same quality (11.4% vs 12.4% wrong on a 70/20/10 mix) with 0.46 calls per request instead of 1; with the agent as the only fallback it delivers 1.0% wrong and escalates 46%. The LLM is the stronger tier only where the fast model has seen nothing: 82% vs 72% on never-seen MASSIVE groups, 73% vs 36% on Spanish versions of familiar requests. A stronger LLM would change these absolute numbers; none was run.
-7. **Compiled programs rot, and a contract change is the drift no guard sees.** On 6.4 years of dated headlines a program compiled on the first year goes from 11% to 65% silent errors while still answering. In the scripted loop the guards handle new groups, an out-of-scope burst and noise (1.3%, 2.7%, 1.0% wrong), but after a policy change 65% of re-routed requests are answered under the old policy until shadow sampling notices (400 requests at a 10% rate) or the change is announced (0%). Retraining on the system's own answers without a gate was the worst policy in the scripted loop (22% wrong) and stayed over budget in 57 of 65 months on the news stream.
+6. **Here the local LLM is the weak tier.** Qwen3-4B is right on 95% of familiar requests and 78% of unseen-group requests and takes the "none of these" exit for only 45% of out-of-scope queries. A guarded fast tier in front of it delivers the same quality (11.4% vs 12.4% wrong on a 70/20/10 mix) with 0.46 calls per request instead of 1; with the agent as the only fallback it delivers 1.0% wrong and escalates 46%. The LLM is the stronger tier only where the fast model has seen nothing: 82% vs 72% on never-seen MASSIVE groups, 73% vs 36% on Spanish versions of familiar requests. A stronger LLM changes this (Experiment 10): Claude Opus 5.5 at medium effort, on the same rows, is right on 95% of unseen-group requests against 78% and takes the exit on 96% of out-of-scope queries against 47%. With that model always-LLM delivers 1.0% wrong and the guarded stack in front of it 1.8%: the compiled tier becomes the weaker one, and what it buys is 55% of requests answered without a model call.
+7. **Compiled programs rot, and a contract change is the drift no guard sees.** On 6.4 years of dated headlines a program compiled on the first year goes from 11% to 65% silent errors while still answering. In the scripted loop the guards handle new groups, an out-of-scope burst and noise (1.3%, 2.7%, 1.0% wrong), but after a policy change 81% of re-routed requests are answered under the old policy. Re-checking 10% of fast answers did not catch it within the 640 requests that followed; re-checking 40% took 200 requests. Announcing the change brings it to 0%. Retraining on the system's own answers without a gate was the worst policy in the scripted loop (17% wrong) and stayed over budget in 57 of 65 months on the news stream.
 8. **The wrapper-harness idea works modestly: the decisions shrink, few disappear.** Watching 60 runs of a three-call "analyze this profile" agent was enough to compile it into code plus one narrow typed call: 2.9× faster for the structured analysis (11.2 s → 3.8 s), 1.7× when prose is still generated. Only 1 of 6 short fields passed admission as pure code; the rest stayed with the model as one smaller typed call, because what the agent does for them is not a simple function of the text. The recordings also audited the agent: it reported a degree for 33 of 44 profiles that show no education at all.
 
 **What is measured, replayed, or assumed.**
@@ -25,7 +25,8 @@ An earlier demonstration of this idea ran on synthetic expense lines with a stub
 | Replayed real outputs | Experiments 5, 6 and 8 look up the stored real LLM answer for each exact request instead of calling the model again; latency per request in the stack and loop tables is assembled from the measured per-tier medians |
 | Scripted | The order and mix of traffic in Experiment 6 (five phases), the traffic mixes in Experiment 5, the seeded bad inputs, keyboard noise |
 | Assumed | The agent: wherever a request is escalated, the human label is taken as the agent's answer and assumed correct; its cost is counted as escalations and never timed |
-| Not run | Any hosted or frontier model; an agent with tools; GPU latency for the fast tier; real production traffic with repeats |
+| Real answers, different protocol | Experiment 10: Claude Opus 5.5 (medium effort) answered through Claude Code subagents in blind batches of about 220 requests, not one API call per request. No latency, no token probabilities, no measured cost |
+| Not run | Any hosted model through its API; any OpenAI model (no CLI or key on this machine); an agent with tools; GPU latency for the fast tier; real production traffic with repeats |
 
 ## 1. Test bed
 
@@ -606,34 +607,38 @@ Per population: wrong answers delivered, and share answered locally (no LLM, no 
 | 2 new groups | 610 | oos 20, seen 250, unseen 340 |
 | 3 out-of-scope burst | 600 | oos 300, seen 200, unseen 100 |
 | 4 noisy input | 520 | oos 20, typo 400, unseen 100 |
-| 5 policy change | 640 | affected 240, seen 400 |
+| 5 policy change | 640 | affected 90, seen 550 |
+
+In phase 5 the contract changes: requests about a damaged card, a replacement card or a lost card move from `credit_cards` to `banking` (90 of the 640 requests in that phase). All three request types are named in the changed contract.
+
+> **Correction (2026-11-11).** The first version of this experiment also counted applications for a new credit card (`new_card`, 150 requests) as re-routed. The policy text does not cover them, and both LLMs that were given the changed contract kept most of them in `credit_cards` (97% and 87%, Experiment 10). Those 150 requests are now ordinary traffic with their original label. Phase 5 was rerun; the numbers for phases 1 to 4 are unchanged. Earlier figures for this phase (65% of re-routed requests answered under the old policy, detection after 400 requests at a 10% shadow rate, the LLM following the changed contract on 45%) were artefacts of that labelling and are withdrawn.
 
 **Abstentions go to the local LLM, then to the agent** (the shadow oracle is the LLM):
 
 | Policy | Wrong delivered | …of which from the fast tier | Fast | LLM | Agent | LLM calls / req (incl. shadow) | ms / req | wrong ph.1 | ph.2 | ph.3 | ph.4 | ph.5 | wrong on re-routed requests |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| A always-LLM | 18.78% | 0.00% | 0.0% | 91.9% | 8.1% | 1.00 | 267 | 7.6% | 14.4% | 32.8% | 11.0% | 23.4% | 55% |
-| B static, naive calibration | 26.52% | 21.43% | 82.7% | 13.8% | 3.5% | 0.17 | 55 | 6.7% | 15.6% | 42.0% | 24.0% | 37.5% | 97% |
-| C static, gate + verifier | 21.00% | 6.70% | 43.1% | 49.0% | 8.0% | 0.57 | 161 | 5.7% | 13.9% | 32.3% | 10.8% | 35.5% | 90% |
-| D = C + shadow sampling + class breakers | 21.00% | 6.70% | 43.1% | 49.0% | 8.0% | 0.61 | 161 | 5.7% | 13.9% | 32.3% | 10.8% | 35.5% | 90% |
-| D+ = D, contract change announced | 17.96% | 1.08% | 36.3% | 55.7% | 8.0% | 0.67 | 179 | 5.7% | 13.9% | 32.3% | 10.8% | 22.2% | 55% |
-| E = D + regression-gated recompiles | 20.11% | 5.41% | 45.3% | 46.7% | 8.0% | 0.59 | 155 | 5.7% | 13.9% | 32.5% | 10.6% | 31.6% | 78% |
-| E' = E, regression suite left stale | 20.11% | 5.41% | 45.3% | 46.7% | 8.0% | 0.59 | 155 | 5.7% | 13.9% | 32.5% | 10.6% | 31.6% | 78% |
-| E+ = E, contract change announced | 18.10% | 1.40% | 40.3% | 51.8% | 7.9% | 0.64 | 168 | 5.7% | 13.9% | 32.5% | 10.6% | 22.8% | 55% |
-| F ungated self-training | 27.49% | 22.94% | 85.9% | 11.3% | 2.7% | 0.14 | 46 | 6.7% | 14.9% | 45.7% | 26.2% | 37.2% | 95% |
+| A always-LLM | 14.80% | 0.00% | 0.0% | 91.9% | 8.1% | 1.00 | 267 | 7.6% | 14.4% | 32.8% | 11.0% | 6.1% | 1% |
+| B static, naive calibration | 21.15% | 16.20% | 82.7% | 13.8% | 3.5% | 0.17 | 55 | 6.7% | 15.6% | 42.0% | 24.0% | 14.1% | 92% |
+| C static, gate + verifier | 16.16% | 3.69% | 43.1% | 49.0% | 8.0% | 0.57 | 161 | 5.7% | 13.9% | 32.3% | 10.8% | 14.4% | 82% |
+| D = C + shadow sampling + class breakers | 16.16% | 3.69% | 43.1% | 49.0% | 8.0% | 0.61 | 161 | 5.7% | 13.9% | 32.3% | 10.8% | 14.4% | 82% |
+| D+ = D, contract change announced | 13.98% | 1.08% | 36.3% | 55.7% | 8.0% | 0.67 | 179 | 5.7% | 13.9% | 32.3% | 10.8% | 4.8% | 1% |
+| E = D + regression-gated recompiles | 15.63% | 3.15% | 45.3% | 46.7% | 8.0% | 0.59 | 155 | 5.7% | 13.9% | 32.5% | 10.6% | 12.0% | 57% |
+| E' = E, regression suite left stale | 15.63% | 3.15% | 45.3% | 46.7% | 8.0% | 0.59 | 155 | 5.7% | 13.9% | 32.5% | 10.6% | 12.0% | 57% |
+| E+ = E, contract change announced | 14.12% | 1.40% | 40.3% | 51.8% | 7.9% | 0.64 | 168 | 5.7% | 13.9% | 32.5% | 10.6% | 5.5% | 1% |
+| F ungated self-training | 22.19% | 17.67% | 85.9% | 11.3% | 2.7% | 0.14 | 46 | 6.7% | 14.9% | 45.7% | 26.2% | 14.1% | 89% |
 
 **Abstentions go straight to the agent** (the shadow oracle is the agent). This removes the local LLM's own errors, so what is left is the compiled tier and the loop:
 
 | Policy | Wrong delivered | …of which from the fast tier | Fast | LLM | Agent | LLM calls / req (incl. shadow) | ms / req | wrong ph.1 | ph.2 | ph.3 | ph.4 | ph.5 | wrong on re-routed requests |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| B static, naive calibration | 21.43% | 21.43% | 82.7% | 0.0% | 17.3% | 0.00 | 9 | 4.8% | 10.7% | 29.2% | 20.2% | 36.4% | 95% |
-| C static, gate + verifier | 6.70% | 6.70% | 43.1% | 0.0% | 56.9% | 0.00 | 9 | 0.0% | 1.3% | 2.7% | 1.0% | 24.7% | 65% |
-| D = C + shadow sampling + class breakers | 4.41% | 4.41% | 40.4% | 0.0% | 59.6% | 0.00 | 9 | 0.0% | 1.3% | 2.7% | 1.0% | 14.7% | 39% |
+| B static, naive calibration | 16.20% | 16.20% | 82.7% | 0.0% | 17.3% | 0.00 | 9 | 4.8% | 10.7% | 29.2% | 20.2% | 13.6% | 92% |
+| C static, gate + verifier | 3.69% | 3.69% | 43.1% | 0.0% | 56.9% | 0.00 | 9 | 0.0% | 1.3% | 2.7% | 1.0% | 11.6% | 81% |
+| D = C + shadow sampling + class breakers | 3.69% | 3.69% | 43.1% | 0.0% | 56.9% | 0.00 | 9 | 0.0% | 1.3% | 2.7% | 1.0% | 11.6% | 81% |
 | D+ = D, contract change announced | 1.08% | 1.08% | 36.3% | 0.0% | 63.7% | 0.00 | 9 | 0.0% | 1.3% | 2.7% | 1.0% | 0.2% | 0% |
-| E = D + regression-gated recompiles | 3.69% | 3.69% | 46.0% | 0.0% | 54.0% | 0.00 | 9 | 0.0% | 1.1% | 2.3% | 1.0% | 12.0% | 32% |
-| E' = E, regression suite left stale | 3.69% | 3.69% | 46.0% | 0.0% | 54.0% | 0.00 | 9 | 0.0% | 1.1% | 2.3% | 1.0% | 12.0% | 32% |
-| E+ = E, contract change announced | 1.61% | 1.61% | 43.5% | 0.0% | 56.5% | 0.00 | 9 | 0.0% | 1.1% | 2.3% | 1.0% | 3.0% | 8% |
-| F ungated self-training | 22.15% | 22.15% | 85.9% | 0.0% | 14.1% | 0.00 | 9 | 4.5% | 10.2% | 30.7% | 22.3% | 37.0% | 96% |
+| E = D + regression-gated recompiles | 3.23% | 3.23% | 46.5% | 0.0% | 53.5% | 0.00 | 9 | 0.0% | 1.1% | 2.3% | 1.0% | 10.0% | 71% |
+| E' = E, regression suite left stale | 3.23% | 3.23% | 46.5% | 0.0% | 53.5% | 0.00 | 9 | 0.0% | 1.1% | 2.3% | 1.0% | 10.0% | 71% |
+| E+ = E, contract change announced | 1.65% | 1.65% | 44.4% | 0.0% | 55.6% | 0.00 | 9 | 0.0% | 1.1% | 2.3% | 1.0% | 3.1% | 22% |
+| F ungated self-training | 16.81% | 16.81% | 85.9% | 0.0% | 14.1% | 0.00 | 9 | 4.5% | 10.2% | 30.7% | 22.3% | 13.8% | 91% |
 
 Shadow estimate of the fast tier's silent-error rate versus the truth (10% of fast answers re-checked; in D the checker is the LLM, in D* and E* the agent):
 
@@ -643,26 +648,26 @@ Shadow estimate of the fast tier's silent-error rate versus the truth (10% of fa
 | D | 2 new groups | 36.6% | 25 | 0.0% | 0.0% – 13.3% | 3.6% |
 | D | 3 out-of-scope burst | 29.5% | 19 | 0.0% | 0.0% – 16.8% | 9.0% |
 | D | 4 noisy input | 16.2% | 6 | 16.7% | 3.0% – 56.4% | 6.0% |
-| D | 5 policy change | 68.1% | 39 | 17.9% | 9.0% – 32.7% | 36.2% |
+| D | 5 policy change | 68.1% | 39 | 17.9% | 9.0% – 32.7% | 17.0% |
 | D* | 1 steady | 67.1% | 28 | 0.0% | 0.0% – 12.1% | 0.0% |
 | D* | 2 new groups | 36.6% | 25 | 0.0% | 0.0% – 13.3% | 3.6% |
 | D* | 3 out-of-scope burst | 29.5% | 19 | 15.8% | 5.5% – 37.6% | 9.0% |
 | D* | 4 noisy input | 16.2% | 6 | 16.7% | 3.0% – 56.4% | 6.0% |
-| D* | 5 policy change | 56.4% | 29 | 13.8% | 5.5% – 30.6% | 26.0% |
+| D* | 5 policy change | 68.1% | 39 | 17.9% | 9.0% – 32.7% | 17.0% |
 | E* | 1 steady | 67.1% | 28 | 0.0% | 0.0% – 12.1% | 0.0% |
 | E* | 2 new groups | 43.8% | 32 | 0.0% | 0.0% – 10.7% | 2.6% |
 | E* | 3 out-of-scope burst | 36.8% | 26 | 11.5% | 4.0% – 29.0% | 6.3% |
 | E* | 4 noisy input | 19.6% | 9 | 11.1% | 2.0% – 43.5% | 4.9% |
-| E* | 5 policy change | 64.4% | 39 | 20.5% | 10.8% – 35.5% | 18.7% |
+| E* | 5 policy change | 66.6% | 42 | 16.7% | 8.3% – 30.6% | 15.0% |
 
 How quickly shadow sampling notices the policy change (policy D*, agent as checker):
 
 | Shadow rate | Requests until the breaker opens | Wrong on re-routed requests | Wrong overall | Checker calls / request | False alarms (other classes) |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| 5% | 400 | 39% | 4.41% | 0.017 | 0 |
-| 10% | 400 | 39% | 4.41% | 0.038 | 0 |
-| 20% | 200 | 17% | 2.51% | 0.071 | 0 |
-| 40% | 150 | 10% | 1.90% | 0.139 | 0 |
+| 5% | 640 (last block of the stream: no request benefited) | 81% | 3.69% | 0.019 | 0 |
+| 10% | 640 (last block of the stream: no request benefited) | 81% | 3.69% | 0.042 | 0 |
+| 20% | 450 | 57% | 2.90% | 0.077 | 0 |
+| 40% | 200 | 26% | 1.90% | 0.142 | 0 |
 
 Events, policy E (185 regression cases re-adjudicated by the agent):
 
@@ -682,9 +687,9 @@ Events, policy E* (183 regression cases re-adjudicated by the agent):
 - request 1200: recompile (periodic) on 391 production labels: **deployed** (recent hold-out 1/59 wrong, regression suite 97.2% → 97.1%)
 - request 1600: recompile (periodic) on 444 production labels: **deployed** (recent hold-out 1/51 wrong, regression suite 97.1% → 96.9%)
 - request 2000: recompile (periodic) on 642 production labels: **deployed** (recent hold-out 3/58 wrong, regression suite 96.9% → 97.1%)
-- request 2400: recompile (periodic) on 812 production labels: **deployed** (recent hold-out 1/72 wrong, regression suite 97.1% → 96.8%)
-- request 2750: breaker opens for class `credit_cards` (4 of last 8 shadow checks disagreed)
-- request 2750: recompile (breaker:credit_cards) on 903 production labels: **deployed** (recent hold-out 4/88 wrong, regression suite 93.6% → 93.3%)
+- request 2400: recompile (periodic) on 812 production labels: **deployed** (recent hold-out 1/75 wrong, regression suite 97.1% → 96.6%)
+- request 2600: breaker opens for class `credit_cards` (3 of last 9 shadow checks disagreed)
+- request 2600: recompile (breaker:credit_cards) on 859 production labels: **deployed** (recent hold-out 4/83 wrong, regression suite 93.3% → 93.6%)
 
 Events, policy E'*:
 
@@ -693,9 +698,9 @@ Events, policy E'*:
 - request 1200: recompile (periodic) on 391 production labels: **deployed** (recent hold-out 1/59 wrong, regression suite 97.2% → 97.1%)
 - request 1600: recompile (periodic) on 444 production labels: **deployed** (recent hold-out 1/51 wrong, regression suite 97.1% → 96.9%)
 - request 2000: recompile (periodic) on 642 production labels: **deployed** (recent hold-out 3/58 wrong, regression suite 96.9% → 97.1%)
-- request 2400: recompile (periodic) on 812 production labels: **deployed** (recent hold-out 1/72 wrong, regression suite 97.1% → 96.8%)
-- request 2750: breaker opens for class `credit_cards` (4 of last 8 shadow checks disagreed)
-- request 2750: recompile (breaker:credit_cards) on 903 production labels: **deployed** (recent hold-out 4/88 wrong, regression suite 96.8% → 95.9%)
+- request 2400: recompile (periodic) on 812 production labels: **deployed** (recent hold-out 1/75 wrong, regression suite 97.1% → 96.6%)
+- request 2600: breaker opens for class `credit_cards` (3 of last 9 shadow checks disagreed)
+- request 2600: recompile (breaker:credit_cards) on 859 production labels: **deployed** (recent hold-out 4/83 wrong, regression suite 96.6% → 96.4%)
 
 Events, policy E+* (182 regression cases re-adjudicated by the agent):
 
@@ -705,15 +710,15 @@ Events, policy E+* (182 regression cases re-adjudicated by the agent):
 - request 1600: recompile (periodic) on 444 production labels: **deployed** (recent hold-out 1/51 wrong, regression suite 97.1% → 96.9%)
 - request 2000: recompile (periodic) on 642 production labels: **deployed** (recent hold-out 3/58 wrong, regression suite 96.9% → 97.1%)
 - request 2150: contract change announced, class `credit_cards` invalidated
-- request 2400: recompile (periodic) on 844 production labels: **deployed** (recent hold-out 5/77 wrong, regression suite 93.8% → 93.9%)
+- request 2400: recompile (periodic) on 844 production labels: **deployed** (recent hold-out 5/82 wrong, regression suite 93.8% → 93.6%)
 
 **What this shows**
 
-- With the agent as fallback, the guards do their job on three of the four scripted drifts. The naive tier (B*) delivers 21% wrong answers; the guarded tier (C*) delivers 1.3% when new groups arrive, 2.7% in the out-of-scope burst and 1.0% on noisy input, by escalating instead of answering (57% of requests).
-- A change of contract is the drift no input-side guard can see: the requests look familiar and the program is confident, so 65% of re-routed requests are answered under the old policy. Shadow sampling finds it, slowly: at a 10% rate the breaker opened after 400 requests, at 40% after 150. Announcing the change and invalidating the affected answer class at once (D+*) leaves 0% wrong. A contract version belongs in every compiled answer's guard.
-- Regression-gated recompiles win back coverage without adding errors while the contract is stable (6 of 7 candidates deployed; over phases 1 to 4 the fast share is 41% against 36% for the static program, with 1.2% against 1.3% wrong answers). After the contract change the candidate looked 0.8 points worse on the stale regression suite and 0.3 points worse on the re-adjudicated one (183 cases sent to the agent): a suite that encodes the old contract penalises exactly the update that is needed, and it has to be re-adjudicated when the contract changes.
-- Ungated self-training is the worst policy in the loop (22% wrong with the agent as fallback, 27% with the LLM): it has the highest fast share and learns its own mistakes.
-- With the local LLM as fallback everything is noisier, because the LLM itself is wrong on 19% of this stream (33% in the out-of-scope burst) and follows the changed contract on only 45% of re-routed requests. The guarded stack (C) matches it before the policy change with 0.57 calls per request, and an LLM shadow checker is too noisy and too slow to trip the breaker in time (D equals C here). In the first phase its shadow estimate is 7% while the fast tier's true silent rate is 0%: those disagreements are the checker's errors.
+- With the agent as fallback, the guards do their job on three of the four scripted drifts. The naive tier (B*) delivers 16% wrong answers; the guarded tier (C*) delivers 1.3% when new groups arrive, 2.7% in the out-of-scope burst and 1.0% on noisy input, by escalating instead of answering (57% of requests).
+- A change of contract is the drift no input-side guard can see: the requests look familiar and the program is confident, so 81% of re-routed requests are answered under the old policy. Shadow sampling is slow to find it, because the re-routed requests are only 14% of the traffic after the change. At a shadow rate of 5% and 10% the breaker opened only in the last block of the stream, 640 requests after the change, so no request benefited. At 20% it opened after 450 requests and 57% of re-routed requests were still answered wrongly; at 40% it opened after 200 requests and 26% of re-routed requests were still answered wrongly. Announcing the change and invalidating the affected answer class at once (D+*) leaves 0% wrong. A contract version belongs in every compiled answer's guard.
+- Regression-gated recompiles win back coverage without adding errors while the contract is stable (6 of 7 candidates deployed; over phases 1 to 4 the fast share is 41% against 36% for the static program, with 1.2% against 1.3% wrong answers). After the contract change the breaker opened 450 requests in and triggered a recompile. That candidate scored -0.1 points against the stale regression suite (deployed) and +0.2 points against the re-adjudicated one (deployed; 183 cases sent to the agent). A suite that encodes the old contract is biased against the update that is needed and should be re-adjudicated when the contract changes; with three request types re-routed the bias was small here and did not change the decision. With recompiles, 71% of re-routed requests were still answered under the old policy (E*), against 22% when the change is announced first (E+*): the announcement switches the class off, and the next admitted recompile switches it back on with a model that has seen only a few post-change labels.
+- Ungated self-training is the worst policy in the loop (17% wrong with the agent as fallback, 22% with the LLM): it has the highest fast share and learns its own mistakes.
+- With the local LLM as fallback everything is noisier, because the LLM itself is wrong on 15% of this stream (33% in the out-of-scope burst). The changed contract is not its problem: given the new contract it routes 99% of re-routed requests correctly, which is why always-LLM (A) is the best policy in phase 5 (6.1% wrong against 14.4% for the guarded stack). The LLM reads the contract at run time; the compiled tier froze it. Before the policy change the guarded stack (C) matches always-LLM with 0.57 calls per request. At a 10% rate neither checker opens the breaker before the stream ends (D equals C, D* equals C*), and an LLM checker adds noise of its own: in the first phase its shadow estimate is 7% while the fast tier's true silent rate is 0%; those disagreements are the checker's errors.
 
 
 ## 8. Experiment 7: natural drift, nothing scripted
@@ -842,6 +847,64 @@ Against the human field label, the agent is right on 62% of test profiles and th
 - Not tested: an agent with tools; a compile step written by a coding agent instead of chosen from candidates I wrote after reading the observed traces (search, admission and scoring were mechanical); more than one workflow; and the obvious next step, a decision model for the closed-set fields, which needs far more than 60 observed runs to be certified.
 
 
+## 10b. Experiment 10: a closed, hosted model as the LLM tier
+
+*Real answers from `opus-5.5-medium`, but not through one API call per request.* This machine has no API key, so the model was run through Claude Code subagents in blind batches of about 220 requests (1,949 requests in nine files, no labels in the files, files outside the project). There is no per-request latency and no token probability, and the model sees other requests of its batch. Same contract, same held-out rows and same scoring as the local `qwen3-4b` runs, which are shown for the identical rows.
+
+| Population | n | opus-5.5-medium: correct | qwen3-4b: correct | opus-5.5-medium: none exit | qwen3-4b: none exit | opus-5.5-medium: wrong answers / request | qwen3-4b: wrong answers / request |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| seen groups | 450 | 98.7% | 96.4% | 0.9% | 0.4% | 0.4% | 3.1% |
+| never-seen groups | 450 | 94.9% | 77.6% | 3.8% | 2.4% | 1.3% | 20.0% |
+| out of scope | 300 | 95.7% | 47.0% | 95.7% | 47.0% | 4.3% | 53.0% |
+| seen groups, 15% keyboard noise | 200 | 98.0% | 83.5% | 2.0% | 11.5% | 0.0% | 4.5% |
+
+Seeded bad inputs that were given an in-scope category:
+
+| Kind | n | opus-5.5-medium | qwen3-4b |
+| --- | ---: | ---: | ---: |
+| far domain | 20 | 0 | 7 |
+| gibberish | 60 | 0 | 0 |
+| injection | 12 | 1 | 11 |
+| keyboard mash | 40 | 0 | 0 |
+| structural | 17 | 1 | 3 |
+
+The changed contract (requests about physical cards now go to banking): 90 requests the policy covers, 150 requests about applying for a new credit card that it does not cover, 160 unrelated requests:
+
+| Model | Covered: routed under the new policy | Covered: still the old label | Not covered: left where they were | Not covered: moved by mistake | Unrelated requests correct |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| opus-5.5-medium | 94.4% | 1.1% | 97.3% | 2.0% | 99.4% |
+| qwen3-4b | 98.9% | 1.1% | 86.7% | 12.7% | 95.0% |
+
+As a second opinion on never-seen groups, when the fast model is wrong:
+
+| Model | Fast-model errors in the subset | Also wrong | Same wrong label |
+| --- | ---: | ---: | ---: |
+| opus-5.5-medium | 126 | 10% | 4% |
+| qwen3-4b | 126 | 49% | 33% |
+
+Tier stacks on these rows, traffic mix 70 / 20 / 10 (seen / never-seen groups / out of scope):
+
+| LLM tier | Stack | Wrong answers delivered | Answered locally | LLM calls / request | Escalated to agent |
+| --- | --- | ---: | ---: | ---: | ---: |
+| opus-5.5-medium | always-LLM | 1.01% | 0.0% | 1.00 | 10.9% |
+| opus-5.5-medium | fast[R] → LLM | 9.20% | 88.0% | 0.12 | 4.6% |
+| opus-5.5-medium | fast[G]+V → LLM | 1.84% | 55.2% | 0.45 | 10.8% |
+| opus-5.5-medium | fast[G]+V → agent | 0.94% | 55.2% | 0.00 | 44.8% |
+| qwen3-4b | always-LLM | 11.48% | 0.0% | 1.00 | 5.5% |
+| qwen3-4b | fast[R] → LLM | 13.12% | 88.0% | 0.12 | 2.3% |
+| qwen3-4b | fast[G]+V → LLM | 10.77% | 55.2% | 0.45 | 5.4% |
+| qwen3-4b | fast[G]+V → agent | 0.94% | 55.2% | 0.00 | 44.8% |
+
+**What this shows**
+
+- The weaknesses of the LLM tier in Experiments 5 to 8 belong to the small local model, not to the design. On never-seen groups the hosted model is right on 94.9% of requests against 77.6%, and gives a wrong answer on 1.3% against 20.0%; most of its misses are the "none of these" exit (3.8%), which escalates instead of failing silently. It takes that exit for 95.7% of out-of-scope queries against 47.0%, and with 15% of letters mistyped it is right on 98.0% with 0.0% wrong answers against 83.5% and 4.5%.
+- It is hard to push off its contract. Of 12 prompt-injection strings it gave an in-scope category to 1; the local model did so for 11.
+- It is an independent second opinion. When the fast model is wrong on a never-seen group, the hosted model is also wrong 10% of the time and gives the same wrong label 4% of the time; the local LLM 49% and 33%.
+- With a model this good, the compiled tier is the weaker one. Always-LLM delivers 1.01% wrong answers. A guarded fast tier in front of it delivers 1.84% and saves 55% of the calls; about 0.94% of that is the fast tier's own silent errors, the level the gate was calibrated to allow. With the local LLM the same stack was no worse than always-LLM (10.8% against 11.5%), because the LLM's errors hid the fast tier's. A naive fast tier in front of the hosted model is 9.2% wrong: the better the fallback, the more a careless compile costs. So the trade is explicit: a compiled tier buys latency and calls at the price of the error budget you certify it to, and it has to be certified against a budget set by the model it replaces.
+- Both models follow a changed contract for request types it names (94% and 99% routed under the new policy). They differ on what the policy does not cover: the hosted model left 97% of new-card applications where they were, the local model moved 13% of them by mistake.
+- What this does not show: latency and cost. A hosted call adds a network round trip and per-token cost to every request that reaches it, neither of which was measured here, and the batch protocol is easier than one call per request in one respect (the model sees neighbouring requests) and no different in the contract it is given.
+
+
 ## 11. What this changes in the design
 
 These are the changes to the compile procedure that the results support. Each one traces to an experiment above.
@@ -852,14 +915,15 @@ These are the changes to the compile procedure that the results support. Each on
 4. **Pair the embedding model with a character n-gram model as verifier.** It costs a fraction of a millisecond, it disagrees on noise and unseen groups where the embedding model is confidently wrong, and it degrades honestly (Exp. 2, 4).
 5. **Do not use a semantic cache or a single mined rule as a decision tier** without the same admission test; both were weaker than a linear head on the same data (Exp. 1).
 6. **Let the compile step say no.** Some decisions cannot be certified at the budget (MASSIVE at 2%; 5 of 6 short profile fields in Exp. 9). They stay as narrow typed holes.
-7. **Admit every tier, including the LLM.** The local LLM's errors dominated every stack it was in, its confidence could not be certified, and it answered more than half of the out-of-scope queries as in-scope (Exp. 5, 8).
+7. **Admit every tier, including the LLM.** The local LLM's errors dominated every stack it was in, its confidence could not be certified, and it answered more than half of the out-of-scope queries as in-scope (Exp. 5, 8). A frontier model did far better on the same rows, and then the fast tier's own errors set the floor (Exp. 10): which tier needs the guard depends on the model, so measure it.
 8. **Version the contract and invalidate on change.** A contract change is invisible to input-side guards; an announced invalidation of the affected answer class removed the errors, and the regression suite has to be re-adjudicated at the same time (Exp. 6).
 9. **Never retrain on unverified own answers.** Gate every update on held-out recent labels and a regression suite; remember that the labels a running system collects come from escalations and are harder than its fast-path traffic (Exp. 6, 7).
 10. **Engineer the hole.** Fixed contract prefix with a reused KV cache; closed answer sets; the smallest input that suffices; batch sizes chosen with the prefix length in mind (Exp. 5, 9).
 
 ## 12. Limits of this study
 
-- The LLMs are 4-bit local models of about 4B parameters. Every statement about "the LLM tier" is about them. The comparison between always-LLM and compiled stacks would shift with a stronger model; the fast-tier results would not.
+- The LLMs in Experiments 1 to 9 are 4-bit local models of about 4B parameters. Every statement about "the LLM tier" outside Experiment 10 is about them. Experiment 10 shows how far the comparison between always-LLM and compiled stacks shifts with a frontier model; the fast-tier results do not shift.
+- Experiment 10 is one hosted model, one effort setting, one frozen split, 1,949 requests, answered in batches through subagents. A batch lets the model see other requests, which a per-request call would not. Its latency and cost were not measured. The policy-change part of the production loop (Experiment 6, phase 5) was not replayed with the hosted model.
 - The agent is the human label. Human labels in these datasets are themselves imperfect (MASSIVE and the news sections visibly so), and the CLINC domain taxonomy is partly arbitrary for unseen intents.
 - One frozen group split carries all LLM-in-the-loop results (Exp. 4, 5, 6, 8). The fast-tier conclusions were checked on 20 splits; the LLM ones were not.
 - Intent routing and profile analysis are short-text, closed-answer tasks. Nothing here tests perceptual workflows such as video to Blender, where the verifier is the hard part.
@@ -875,4 +939,4 @@ The research and repository claims quoted in the shared conversation (FlashScrip
 
 ## 14. Files
 
-`REPORT.md` (this file) · `README.md` (layout and commands to reproduce) · `results/*.json` (every number) · `bench/` (experiments) · `skills/workflow-compiler/` and `workflow-compiler-v2.skill` (the skill revised with these results; 23 tests) · `wfc/` and `tests/` (kernel) · `cache/llm/*.jsonl` (stored LLM answers with raw text and token probabilities) · `logs/pip_freeze.txt` (exact package versions).
+`REPORT.md` (this file) · `README.md` (layout and commands to reproduce) · `results/*.json` (every number) · `bench/` (experiments) · `skills/workflow-compiler/` and `workflow-compiler-v2.skill` (the skill revised with these results; 23 tests) · `wfc/` and `tests/` (kernel) · `cache/llm/*.jsonl` (stored LLM answers with raw text and token probabilities) · `cache/closed/` (the hosted model's batch files, answers and scoring key) · `logs/pip_freeze.txt` (exact package versions).

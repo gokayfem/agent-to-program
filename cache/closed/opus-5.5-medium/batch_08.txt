@@ -1,0 +1,328 @@
+You route a user's request to a virtual assistant to exactly one category.
+Categories, each with examples of request types it already handles (it also handles other, similar request types that are not listed):
+- auto_and_commute: e.g. current location, distance, gas type, jump start, mpg, oil change when, tire change, tire pressure, uber
+- banking: e.g. account blocked, balance, bill balance, bill due, damaged card, interest rate, order checks, pay bill, replacement card duration, report fraud, report lost card, transactions
+- credit_cards: e.g. application status, apr, credit limit change, credit score, redeem rewards, rewards balance
+- home: e.g. calendar, next song, order, order status, play music, reminder, shopping list, shopping list update, todo list update
+- kitchen_and_dining: e.g. calories, cook time, how busy, ingredient substitution, ingredients list, meal suggestion, nutrition info, recipe, restaurant suggestion
+- meta: e.g. cancel, change ai name, change speed, change volume, no, repeat, reset settings, user name, whisper mode
+- small_talk: e.g. do you have pets, fun fact, greeting, meaning of life, tell joke, thank you, what can i ask you, where are you from, who made you
+- travel: e.g. book hotel, carry on, exchange rate, timezone, translate, travel alert, travel notification, travel suggestion, vaccines
+- utility: e.g. alarm, calculator, date, definition, find phone, flip coin, spelling, timer, weather
+- work: e.g. direct deposit, income, insurance change, meeting schedule, next holiday, pto request, pto used, taxes, w2
+- none_of_these: the request does not belong to any category above.
+Examples:
+"i'd like to know where i am" -> auto_and_commute
+"how miles does it take to get to red lobster from my current location" -> auto_and_commute
+"which type of gas do i need to put in my car" -> auto_and_commute
+"my car battery has died what should i do now" -> auto_and_commute
+"what are the estimates for the car's highway mpg" -> auto_and_commute
+"when do i need my oil changed" -> auto_and_commute
+"how many times a year should i change my tires" -> auto_and_commute
+"are my tires full or low" -> auto_and_commute
+"i need an uber for 3 passengers to go to madison square garden" -> auto_and_commute
+"figure out why there is a block on my account please" -> banking
+"what's my current bank savings" -> banking
+"what is the total for my utilities bill this month" -> banking
+"tell me when my bill will be due" -> banking
+"report the card has been torn" -> banking
+"i need to find the interest rate for my checking account" -> banking
+"can i get some more of those new checkbooks mailed to me" -> banking
+"can you give me a hand paying my water bill" -> banking
+"how long will it take to get a new card" -> banking
+"how do i report fraud on my discover card" -> banking
+"i would like to have my card reported as stolen" -> banking
+"what transactions did i make yesterday at the flea market" -> banking
+"will i be notified when my application has been processed" -> credit_cards
+"could you tell me what is the apr for the credit card" -> credit_cards
+"is it possible to increase my visa card limit" -> credit_cards
+"what is my exact credit score" -> credit_cards
+"how can i cash in rewards on my discover card" -> credit_cards
+"what is the easiest way to check my bank rewards card" -> credit_cards
+"are there any events on my calendar for march 2nd" -> home
+"skip over this song" -> home
+"i do not have flour so will you order me some more" -> home
+"i ordered some curtains off amazon, can you tell me if it's been shipped yet" -> home
+"turn on the rap playlist" -> home
+"did i add to my reminder list that i need to take the car in for an oil change" -> home
+"what things are on my shopping list" -> home
+"add bread to my list of things to buy" -> home
+"please include laundry on my to do list" -> home
+"how many calories are in a honey bun" -> kitchen_and_dining
+"when should i take an apple pie out" -> kitchen_and_dining
+"how busy do you expect olive garden to be at 6" -> kitchen_and_dining
+"can i substitute apple juice for wine" -> kitchen_and_dining
+"ingredients needed to make a mexican lasagna" -> kitchen_and_dining
+"do you know any greek dishes i could make for dinner" -> kitchen_and_dining
+"give me the nutrition facts for chicken breast" -> kitchen_and_dining
+"can you get me a recipe for mashed potatoes" -> kitchen_and_dining
+"what's the best place for some thai in new york city" -> kitchen_and_dining
+"discontinue please" -> meta
+"i need to change your name, do you have a new name that you like" -> meta
+"speak slower" -> meta
+"please go ahead and increase your speaker volume" -> meta
+"i don't believe that is possible, it is false" -> meta
+"restate the last thing you told me" -> meta
+"go back to the factory settings for this device" -> meta
+"what are you going to refer to me as" -> meta
+"you need to speak softer" -> meta
+"what sort of pets do you have" -> small_talk
+"tell me something fun about gravity" -> small_talk
+"greetings to you" -> small_talk
+"i wanna know the point of life" -> small_talk
+"what jokes do you know" -> small_talk
+"why thank you" -> small_talk
+"what questions are permissible" -> small_talk
+"what country were you made" -> small_talk
+"i'm needing to know who made you" -> small_talk
+"create a reservation novemeber 11 to 15 in cali" -> travel
+"what am i allowed to carry on for american airlines" -> travel
+"what's the currency conversion between rubles and dollars" -> travel
+"how is miami time zone like" -> travel
+"how can i say not now in spanish" -> travel
+"tell me about any travel alerts issued for germany" -> travel
+"i'll soon be travelling internationally; could you let my bank know" -> travel
+"what kind of entertainment is available in chicago" -> travel
+"what shots do i need before heading to france" -> travel
+"can you set an alarm for seven fifteen for tomorrow" -> utility
+"what is 20+ 5" -> utility
+"what is the date tomorrow, please" -> utility
+"the definition of affiliate is" -> utility
+"where was the last place i had my phone" -> utility
+"i want a coin flip and i'll take tails" -> utility
+"spell the word restaurant for me" -> utility
+"i must set a timer" -> utility
+"what's the temperature outside" -> utility
+"how can i have my paycheck directly deposited" -> work
+"how much do i make" -> work
+"i need new home owners insurance" -> work
+"do i have any meetings with michael today" -> work
+"what's the closest holiday after today" -> work
+"can you put in a pto request for march 4 to march 6 for me" -> work
+"how much vacation have i already used this year" -> work
+"how much money is the state going to take from me for taxes" -> work
+"i've got tax issues and need help obtaining my w2" -> work
+"how much is an overdraft fee for bank" -> none_of_these
+"why are exponents preformed before multiplication in the order of operations" -> none_of_these
+"what is the formula for the circumference of a circle" -> none_of_these
+"what are some ways to reduce spending" -> none_of_these
+"what time does the louvre open" -> none_of_these
+"are there any local stations covering the moral march in raleigh in februaryu" -> none_of_these
+"how many planets have we discovered" -> none_of_these
+"how do i change my billing address" -> none_of_these
+"how do i open an online line of credit" -> none_of_these
+"how do i remove a coffee blemish" -> none_of_these
+"how expensive is an apple share" -> none_of_these
+"where can i find the cruise control on my kia sportage 2010" -> none_of_these
+"what size wipers does this car take" -> none_of_these
+"how many sides are in a hexagon" -> none_of_these
+"how fast does an airplane travel" -> none_of_these
+"is it worth investing in target" -> none_of_these
+"i need to speak to customer service regarding my flight" -> none_of_these
+"how long do wire transfers take" -> none_of_these
+"what are some deals on amazon" -> none_of_these
+"what city is the super bowl" -> none_of_these
+Policy update: any request about replacing, ordering, receiving or activating a physical card (for example a damaged card, a replacement card, or when a new card will arrive) now goes to banking, not credit_cards.
+Reply with only the category name, nothing else.
+
+REQUESTS (one JSON object per line)
+{"id": "q934627c5", "request": "tell me spaghetti bolognese's nutrition facts"}
+{"id": "qb5263741", "request": "how soon can i expect a replacement card for my lost card to arrive"}
+{"id": "q8245107c", "request": "i accidentally deactivated the magnetic stripe on my visa debit card and i need to report it"}
+{"id": "q442731e4", "request": "is my replacement card due to arrive in the mail today"}
+{"id": "qc8f35450", "request": "will i get getting my new card anytime soon"}
+{"id": "q642a92d7", "request": "can i just use oil instead of vinegar"}
+{"id": "qd80b19b6", "request": "can you complete an application for a new credit card for me"}
+{"id": "q1d8e3685", "request": "can i maybe apply for a new card"}
+{"id": "q40328e95", "request": "could you share my credit score"}
+{"id": "q88ceba06", "request": "i need to know the time it takes to get a new credit card sent to someone who lost theirs"}
+{"id": "q3373c0e5", "request": "is my credit score over 700 yet"}
+{"id": "q7ea14f10", "request": "i'm too drunk to drive and need an uber home"}
+{"id": "qa2136130", "request": "i gotta apply for a new credit card"}
+{"id": "qd782bd28", "request": "my report card was lost help!"}
+{"id": "q38de49a6", "request": "i got to apply for a new credit card"}
+{"id": "q4409fbe2", "request": "someone used my chase card without my authorization"}
+{"id": "q74b2143c", "request": "when will i received a replacement card"}
+{"id": "q64a9699d", "request": "tell me how i can apply for a chase credit card"}
+{"id": "qb6add9f8", "request": "what new credit card should i submit an application for"}
+{"id": "q80ba963d", "request": "walk me through applying for a visa card"}
+{"id": "qd0df88a0", "request": "how do i apply do get myself a visa"}
+{"id": "q9b1c9432", "request": "can i apply for a paypal master card"}
+{"id": "q04e35f1f", "request": "how many carry ons can i take on a flight with panam to wales"}
+{"id": "q2ec21736", "request": "how many rewards points do i have on my rewards points i have on my mastercard"}
+{"id": "q9eea18b5", "request": "time to order and receive a new credit card"}
+{"id": "q1d37e0b0", "request": "tell me the process of applying for a apollo card"}
+{"id": "q6d2c167f", "request": "my report card was stolen"}
+{"id": "qb999d369", "request": "i would like to have an alarm set for me"}
+{"id": "qc97dbb3c", "request": "how do i apply for a new credit card"}
+{"id": "qefeddb3e", "request": "would you say it again please"}
+{"id": "q0d4f9e18", "request": "i must apply for a new credit card"}
+{"id": "qe3137f1a", "request": "i have a damaged card that needs replaced because my son dropped it in a blender"}
+{"id": "q2386c751", "request": "list the steps for applying for an american express card"}
+{"id": "q65dee1fa", "request": "i spent 34 dollars for 12 gallons of paint what is the average price for each gallon"}
+{"id": "qe5813ffa", "request": "i recently lost my credit card and need to know how long it takes to get a new one mailed to me"}
+{"id": "qba1baac1", "request": "i'd say no"}
+{"id": "qc3f5ff9e", "request": "could steak be used instead of chicken"}
+{"id": "q1357c793", "request": "how long until i get my replacement card"}
+{"id": "qb75f1fad", "request": "find out if there's a new credit card that suits me"}
+{"id": "qa5b7ca22", "request": "how do i sign up for a new credit card"}
+{"id": "qe4b71fbb", "request": "i would like to apply for a bank of america travel rewards credit card"}
+{"id": "q76b8e30d", "request": "i want to report a damaged card that my cat shredded with its claws"}
+{"id": "q7179a0af", "request": "speak more quickly"}
+{"id": "q421b419f", "request": "how do i get a new credit card sent to me"}
+{"id": "q19496255", "request": "how long before my new card is mailed to me"}
+{"id": "q63b3db7c", "request": "tell me what the meaning of life is"}
+{"id": "qe821027d", "request": "how can i apply for a visa card, please"}
+{"id": "q325da4a1", "request": "i need to to know how to report a lost card"}
+{"id": "q69fbc9a5", "request": "i sat on my credit card and broke it in half and need it replaced"}
+{"id": "q317b910d", "request": "are my tires filled enough"}
+{"id": "q21701977", "request": "can you apply for idaho independent card for me"}
+{"id": "q5cdf5ad8", "request": "i lost my card and need to report it"}
+{"id": "q152c6f90", "request": "what is amount of time it takes to get a new credit card i lost mine recently"}
+{"id": "qfe4d2dc2", "request": "tell me nutritional info for beans"}
+{"id": "q66965979", "request": "can i bring suntan lotion in my carry on"}
+{"id": "q5a5d1e4f", "request": "show me how i can get a new credit card"}
+{"id": "qe665ed57", "request": "i want to submit an application for a barclay's card"}
+{"id": "q972eecec", "request": "i would like to report my card damaged since i accidentally spilled gorilla glue all over it and the numbers are now obscured"}
+{"id": "qcefd6c7a", "request": "i would like to apply for a master card"}
+{"id": "q4d57f6d1", "request": "what credit score number do i have"}
+{"id": "q36ff0c7d", "request": "if something is 15% off $35, how much is it"}
+{"id": "qb8dac530", "request": "visa card, i want to apply"}
+{"id": "q09e66d8b", "request": "go ahead and give me the tire pressure of my vehicle"}
+{"id": "qf6d07900", "request": "what if you want a new credit card"}
+{"id": "qa92b17d1", "request": "tell me how to apply for an american express card"}
+{"id": "qb0978b54", "request": "take everything off my to do list"}
+{"id": "qa203b168", "request": "how much longer before the card is mailed to me"}
+{"id": "q91836881", "request": "let me know the wait on a replacement credit card"}
+{"id": "qcb7462ce", "request": "can you tell me if i might be able to apply for a new credit card"}
+{"id": "q7f2f9284", "request": "i want to know how to go about getting a new credit card"}
+{"id": "qf306c336", "request": "is it possible to get a new credit card"}
+{"id": "q04e7e248", "request": "i cannot use my card cuz it's damaged"}
+{"id": "q136d6e88", "request": "am i able to apply for a new credit card"}
+{"id": "qa303b118", "request": "i'm unable to use my card because it's been ruined"}
+{"id": "qbddac4eb", "request": "that is the wrong answer"}
+{"id": "qb249a0bf", "request": "how do i apply for a visa card, please"}
+{"id": "qf2b1704a", "request": "i'm going to be in mexico from thursday to friday, so can you let my bank know"}
+{"id": "q29873409", "request": "search steps for how to report a card lost"}
+{"id": "qd752f49d", "request": "apply for an american express card"}
+{"id": "qe325a457", "request": "i want to apply for a discover card"}
+{"id": "q8cf3bddf", "request": "no, definitely not"}
+{"id": "qb781b1b8", "request": "can you suggest a french restaurant, please"}
+{"id": "qc9c07532", "request": "how much did i spend on my most recent transaction"}
+{"id": "qf19eafbe", "request": "i would like to report my american express card stolen"}
+{"id": "q9e08780f", "request": "what if you need to get a new credit card"}
+{"id": "qba8b2ebf", "request": "is it possible to apply for a visa card"}
+{"id": "q753f24dc", "request": "i lost my card, what do i do next"}
+{"id": "qca4df1af", "request": "what are some fun cheap activities to do in colorado"}
+{"id": "q8bc81f56", "request": "i wanna apply for a new credit card"}
+{"id": "q818ec1d9", "request": "how healthy is a cheeseburger"}
+{"id": "qe9f16833", "request": "what's the phone number for my credit card company"}
+{"id": "qd38ce95b", "request": "what do i do about a card that's too messed up to be properly scanned"}
+{"id": "q6ec58fb2", "request": "please note vacuuming on my to do list"}
+{"id": "qc2bb5751", "request": "i need to know how to apply for a visa card"}
+{"id": "q92d8013e", "request": "i need some assistance paying my utilities bill"}
+{"id": "qa8f128f8", "request": "what are some good places to go out for dinner in my area tonight"}
+{"id": "qf89da1da", "request": "please tell me how to get a new credit card"}
+{"id": "qce708c35", "request": "tell me the the carry-on restrictions for american airlines"}
+{"id": "q7efd331c", "request": "can you find out how to report a damaged card"}
+{"id": "q761cebd9", "request": "can you help me sign up for a new credit card"}
+{"id": "q5db9b9d1", "request": "how would you say fly in italian"}
+{"id": "qa38bd3c7", "request": "i can't use my card because it’s messed up"}
+{"id": "q048d0c9d", "request": "can you help me apply for a visa card"}
+{"id": "qf9474365", "request": "am i eligible for a new credit card"}
+{"id": "q2699c671", "request": "can you send me a new credit card please mine is getting old and unusable"}
+{"id": "qcc51d74d", "request": "how do i change the speed of your voice"}
+{"id": "q192b3a9d", "request": "what does it take to get a new card"}
+{"id": "q63159e71", "request": "tell me about the chase credit card application process"}
+{"id": "qc5d1d24c", "request": "how long does it take to cook steaks"}
+{"id": "qbf76cc6f", "request": "where can i apply for a black amex card"}
+{"id": "qd8f66e5e", "request": "can you tell me how to apply for a western card"}
+{"id": "q5637fb96", "request": "my card became damaged when i dropped it in the parking lot and it got ran over"}
+{"id": "q632a9766", "request": "can you do some research about the best places to travel"}
+{"id": "q1472cc7b", "request": "is the marathon on friday added to my calendar"}
+{"id": "qb125f034", "request": "what should i do if i need to report my card lost"}
+{"id": "qc63b5657", "request": "can you let me know the info on how to apply for a visa card"}
+{"id": "q1e0350a8", "request": "my dog swallowed my credit card and i need a new one"}
+{"id": "q32f6c71b", "request": "i need to replace a card that my daughter spilled juice on"}
+{"id": "qa8f28bb1", "request": "what is the shipping time for my card"}
+{"id": "q08a7c4a2", "request": "that is incorrect"}
+{"id": "q1a29e0ac", "request": "what exactly is the tire pressure for the car"}
+{"id": "qe58bfdc6", "request": "i wanna know my credit card's rewards balance"}
+{"id": "q0b9fb7af", "request": "please help me apply for a silver card"}
+{"id": "qf43934d3", "request": "show me the application for a visa card"}
+{"id": "q975c0f53", "request": "what's the procedure to apply for a new credit card"}
+{"id": "q6fe555fe", "request": "what do i do to get a visa card"}
+{"id": "qffc50993", "request": "i can't use my card because it’s damaged badly"}
+{"id": "q77418801", "request": "am i eligible for a new credit card application"}
+{"id": "q88ba951d", "request": "great, thanks!"}
+{"id": "q3689db46", "request": "what's my car's mpg, please"}
+{"id": "qba996fe2", "request": "i have lost my card, what am i supposed to do"}
+{"id": "q249214ff", "request": "is this how i apply for a discover card"}
+{"id": "q6d0494fe", "request": "what does epicurean mean"}
+{"id": "qc155cfdd", "request": "i would like to apply for a new credit card"}
+{"id": "qa448dcb1", "request": "who should i apply for a credit card for"}
+{"id": "q012e7623", "request": "what is the time frame for sending a customer who lost their credit card a new one"}
+{"id": "q09a51dc2", "request": "get a uber for two to go to a romantic dinner at mcdonalds"}
+{"id": "qf1ff4c33", "request": "assist me in getting a new credit card"}
+{"id": "qf7a5d539", "request": "where can i go to eat"}
+{"id": "qef8e77af", "request": "what's the process for getting an american express card"}
+{"id": "qcac33b42", "request": "i need to tell you about my lost card"}
+{"id": "q757e3af6", "request": "where can i get my w2 from"}
+{"id": "q4e5fdb71", "request": "sorry, i didn't catch that could you say it again"}
+{"id": "q96d7aebf", "request": "can i talk to someone to let them know my card was damaged from being melted on a radiator"}
+{"id": "q7d83e9cf", "request": "i need to know all my spending transactions"}
+{"id": "q506b7738", "request": "is it possible to apply for a new credit card"}
+{"id": "q868c1e0d", "request": "how do i get a new credit card"}
+{"id": "q9db82b70", "request": "i want to apply for a wells fargo credit card"}
+{"id": "qa7455acc", "request": "how long do i need to cook chicken"}
+{"id": "qb2fd4bf6", "request": "ai is a helpful item to have in my home, thank you"}
+{"id": "qa61b2e68", "request": "when will the replaecment card arrive"}
+{"id": "q27badbde", "request": "could you hit next"}
+{"id": "q14758d97", "request": "can you suggest a few credit cards that have good rewards points"}
+{"id": "q36de1f21", "request": "what is the shipping wait for my card"}
+{"id": "qaedd98fb", "request": "is there a list of good credit cards i can choose from to apply for"}
+{"id": "qf51fba69", "request": "right now, i need to know the meaning of life"}
+{"id": "qd0787d5c", "request": "how do i apply for a visa card"}
+{"id": "qad0fb074", "request": "do you have any information on how to open a new credit card"}
+{"id": "q3d1ff6f2", "request": "is this where i apply for a new credit card"}
+{"id": "q1014bff5", "request": "how much time before my new card is mailed to me"}
+{"id": "qda0e007d", "request": "how to apply for platinum card"}
+{"id": "q63b34ab2", "request": "help me apply for an american express card"}
+{"id": "q1a7d36f7", "request": "what if you want to obtain a new credit card"}
+{"id": "qd66353f4", "request": "how do i report the card as lost"}
+{"id": "q40cfa3e3", "request": "apply for a bank of america travel rewards credit card"}
+{"id": "qfb277681", "request": "how do i apply for a barclay's card"}
+{"id": "qd4bd6a8f", "request": "what's the apr on my capital one venture card"}
+{"id": "qc59ae203", "request": "can credit card companies expedite delivery of reissued credit cards"}
+{"id": "q9d1d65d5", "request": "i would like to apply for a green card"}
+{"id": "qdd145e29", "request": "what information can you give me on the meaning of life"}
+{"id": "qe96a3888", "request": "apply for a kbc card for me"}
+{"id": "q6f34d104", "request": "can i please get a new card"}
+{"id": "qd0266e17", "request": "i want to know my credit rating"}
+{"id": "q1dda19b5", "request": "try to speak slowly"}
+{"id": "q8903f3c5", "request": "tell me how to apply for a credit card"}
+{"id": "q3c004e03", "request": "what's the meaning of naff"}
+{"id": "qdd19367c", "request": "tell me the answer to 1000 divided by 40"}
+{"id": "q82a79fc4", "request": "what is the recommended interval to get my oil changed"}
+{"id": "qf9a40da7", "request": "what is the carry-on policy for flights on southwest"}
+{"id": "q8c199bc2", "request": "i need to apply for a new credit card that will match my needs"}
+{"id": "q7c9c1763", "request": "i apprecaite the help from you"}
+{"id": "qcf700046", "request": "tell me how to go about reporting a damaged card"}
+{"id": "q3e10873d", "request": "who do i speak with about my card that was lost"}
+{"id": "qe04b7a90", "request": "how long before the replacement card is mailed to me"}
+{"id": "q596004c5", "request": "what is the procedure for signing up for a new allstate plan"}
+{"id": "qb210070c", "request": "is my apr rate better than most"}
+{"id": "q12ddc29f", "request": "tell me how to apply for a new credit card"}
+{"id": "qebdb59f3", "request": "what do my visa points look like"}
+{"id": "q0960e140", "request": "give me a list of places that serve the best wings in charlotte"}
+{"id": "qfd50b200", "request": "i want to put in an application for a line of a credit card how do i do that"}
+{"id": "qc9bd3e97", "request": "please tell me how to go about reporting a lost card"}
+{"id": "q72d6c7ad", "request": "how do i report that i lost my card"}
+{"id": "qf2b3d0cb", "request": "can i get peppers instead of onions"}
+{"id": "q452b7ec0", "request": "can i complete an application for a new credit card"}
+{"id": "q3fee19d6", "request": "how long does it take for a credit card to be reissued and mailed to me"}
+{"id": "qe1ee6219", "request": "what do i do with a damaged credit card"}
+{"id": "q2db41e3e", "request": "pay $175 on my visa"}
+{"id": "q0dc5fd72", "request": "call an uber to take a group of 4 from this bar to the one on maple st"}
+{"id": "q9304f034", "request": "help me apply for a visa card"}
+{"id": "q95492c37", "request": "how would i apply for an american express"}

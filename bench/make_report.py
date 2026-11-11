@@ -407,6 +407,16 @@ def sec_e6() -> str:
     ph = {1: "steady", 2: "new groups", 3: "out-of-scope burst", 4: "noisy input", 5: "policy change"}
     rows = [[f"{p} {ph[int(p)]}", v["n"], ", ".join(f"{k} {n}" for k, n in v["kinds"].items())] for p, v in r["phases"].items()]
     s += table(["Phase", "Requests", "Mix"], rows, "lrl") + "\n\n"
+    n_aff = r["phases"]["5"]["kinds"].get("affected", 0)
+    s += (f"In phase 5 the contract changes: requests about a damaged card, a replacement card or a lost card move from "
+          f"`credit_cards` to `banking` ({n_aff} of the {r['phases']['5']['n']} requests in that phase). All three request types are "
+          "named in the changed contract.\n\n"
+          "> **Correction (2026-11-11).** The first version of this experiment also counted applications for a new credit card "
+          "(`new_card`, 150 requests) as re-routed. The policy text does not cover them, and both LLMs that were given the changed "
+          "contract kept most of them in `credit_cards` (97% and 87%, Experiment 10). Those 150 requests are now ordinary traffic with their original label. "
+          "Phase 5 was rerun; the numbers for phases 1 to 4 are unchanged. Earlier figures for this phase (65% of re-routed requests "
+          "answered under the old policy, detection after 400 requests at a 10% shadow rate, the LLM following the changed contract "
+          "on 45%) were artefacts of that labelling and are withdrawn.\n\n")
     names = {"A": "A always-LLM", "B": "B static, naive calibration", "C": "C static, gate + verifier",
              "D": "D = C + shadow sampling + class breakers", "E": "E = D + regression-gated recompiles",
              "E'": "E' = E, regression suite left stale", "F": "F ungated self-training",
@@ -443,7 +453,14 @@ def sec_e6() -> str:
     s += table(["Policy", "Phase", "Fast share", "Shadow samples", "Shadow estimate", "95% interval", "True silent rate of fast answers"], rows, "llrrrrr") + "\n\n"
     sw = r.get("shadow_sweep", {})
     if sw:
-        rows = [[pct(float(k), 0), v["requests_until_breaker"] if v["requests_until_breaker"] is not None else "never",
+        n5 = r["phases"]["5"]["n"]
+
+        def until(v):
+            u = v["requests_until_breaker"]
+            if u is None:
+                return "never"
+            return f"{u} (last block of the stream: no request benefited)" if u >= n5 else u
+        rows = [[pct(float(k), 0), until(v),
                  pct(v["wrong_on_rerouted"], 0), pct(v["wrong_total"], 2), num(v["agent_shadow_calls_per_request"], 3), v["other_breakers"]]
                 for k, v in sw.items()]
         s += "How quickly shadow sampling notices the policy change (policy D*, agent as checker):\n\n"
@@ -541,7 +558,7 @@ def sec_e9() -> str:
         return ""
     sp = r["spec"]
     s = "## 10. Experiment 9: a wrapper harness that watches the LLM work, then runs the task as a program\n\n"
-    s += ("*Real runs.* This tests the idea in your post directly: leave the model alone, wrap it, observe it doing an open-ended "
+    s += ("*Real runs.* This tests the wrapper-harness idea directly: leave the model alone, wrap it, observe it doing an open-ended "
           "task (\"analyze this profile\"), and turn what it did into a program whose remaining decisions are small. The uncompiled "
           "agent is three free-form calls to Qwen3-4B per profile (extract facts, assess, write a summary). The harness recorded "
           f"{sp['n_observed']} runs, searched candidate programs per output field against them, and admitted a program only if it "
@@ -605,7 +622,51 @@ def sec_e9() -> str:
     return s
 
 
-SECTIONS = [sec_setup, sec_e1, sec_e2, sec_e3, sec_e4, sec_e5, sec_e6, sec_e7, sec_e8, sec_e9]
+def sec_e10() -> str:
+    r = J("exp10_closed.json")
+    if not r:
+        return ""
+    m, loc = r["model"], r["compared_with"]
+    s = "## 10b. Experiment 10: a closed, hosted model as the LLM tier\n\n"
+    s += (f"*Real answers from `{m}`, but not through one API call per request.* This machine has no API key, so the model was run "
+          f"through Claude Code subagents in blind batches of about 220 requests ({r['n_requests']:,} requests in nine files, no labels "
+          "in the files, files outside the project). There is no per-request latency and no token probability, and the model sees "
+          f"other requests of its batch. Same contract, same held-out rows and same scoring as the local `{loc}` runs, which are "
+          "shown for the identical rows.\n\n")
+    rows = []
+    for pop, v in r["populations"].items():
+        rows.append([pop, v[m]["n"], pct(v[m]["correct"]), pct(v[loc]["correct"]), pct(v[m]["none_exit"]), pct(v[loc]["none_exit"]),
+                     pct(v[m]["wrong_answers_per_request"]), pct(v[loc]["wrong_answers_per_request"])])
+    s += table(["Population", "n", f"{m}: correct", f"{loc}: correct", f"{m}: none exit", f"{loc}: none exit",
+                f"{m}: wrong answers / request", f"{loc}: wrong answers / request"], rows) + "\n\n"
+    b = r["bad_inputs"]
+    kinds = [k for k in b[m] if isinstance(b[m][k], dict)]
+    rows = [[k.replace("_", " "), b[m][k]["n"], b[m][k]["answered_in_scope"], b[loc][k]["answered_in_scope"]] for k in kinds]
+    s += "Seeded bad inputs that were given an in-scope category:\n\n"
+    s += table(["Kind", "n", m, loc], rows) + "\n\n"
+    c = r["changed_contract"]
+    rows = [[k, pct(c[k]["rerouted_correct"]), pct(c[k]["rerouted_still_old_label"]), pct(c[k]["not_covered_correct"]),
+             pct(c[k]["not_covered_moved_by_mistake"]), pct(c[k]["control_correct"])] for k in (m, loc)]
+    cm = c[m]
+    s += (f"The changed contract (requests about physical cards now go to banking): {cm['rerouted_n']} requests the policy covers, "
+          f"{cm['not_covered_n']} requests about applying for a new credit card that it does not cover, {cm['control_n']} unrelated requests:\n\n")
+    s += table(["Model", "Covered: routed under the new policy", "Covered: still the old label", "Not covered: left where they were",
+                "Not covered: moved by mistake", "Unrelated requests correct"], rows) + "\n\n"
+    w = r["same_wrong_answer_as_fast_model_on_unseen"]
+    rows = [[k, w[k]["fast_errors"], pct(w[k]["also_wrong"], 0), pct(w[k]["same_wrong_label"], 0)] for k in (m, loc)]
+    s += "As a second opinion on never-seen groups, when the fast model is wrong:\n\n"
+    s += table(["Model", "Fast-model errors in the subset", "Also wrong", "Same wrong label"], rows) + "\n\n"
+    st = r["stacks_mix_70_20_10"]
+    rows = []
+    for k in (m, loc):
+        for pol, v in st[k].items():
+            rows.append([k, pol.replace("->", "→"), pct(v["wrong"], 2), pct(v["local"]), num(v["llm_calls"], 2), pct(v["agent"])])
+    s += "Tier stacks on these rows, traffic mix 70 / 20 / 10 (seen / never-seen groups / out of scope):\n\n"
+    s += table(["LLM tier", "Stack", "Wrong answers delivered", "Answered locally", "LLM calls / request", "Escalated to agent"], rows, "llrrrr") + "\n\n"
+    return s
+
+
+SECTIONS = [sec_setup, sec_e1, sec_e2, sec_e3, sec_e4, sec_e5, sec_e6, sec_e7, sec_e8, sec_e9, sec_e10]
 
 
 def build() -> str:

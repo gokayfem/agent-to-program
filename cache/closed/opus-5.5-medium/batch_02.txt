@@ -1,0 +1,348 @@
+You route a user's request to a virtual assistant to exactly one category.
+Categories, each with examples of request types it already handles (it also handles other, similar request types that are not listed):
+- auto_and_commute: e.g. current location, distance, gas type, jump start, mpg, oil change when, tire change, tire pressure, uber
+- banking: e.g. account blocked, balance, bill balance, bill due, interest rate, order checks, pay bill, report fraud, transactions
+- credit_cards: e.g. application status, apr, credit limit change, credit score, damaged card, redeem rewards, replacement card duration, report lost card, rewards balance
+- home: e.g. calendar, next song, order, order status, play music, reminder, shopping list, shopping list update, todo list update
+- kitchen_and_dining: e.g. calories, cook time, how busy, ingredient substitution, ingredients list, meal suggestion, nutrition info, recipe, restaurant suggestion
+- meta: e.g. cancel, change ai name, change speed, change volume, no, repeat, reset settings, user name, whisper mode
+- small_talk: e.g. do you have pets, fun fact, greeting, meaning of life, tell joke, thank you, what can i ask you, where are you from, who made you
+- travel: e.g. book hotel, carry on, exchange rate, timezone, translate, travel alert, travel notification, travel suggestion, vaccines
+- utility: e.g. alarm, calculator, date, definition, find phone, flip coin, spelling, timer, weather
+- work: e.g. direct deposit, income, insurance change, meeting schedule, next holiday, pto request, pto used, taxes, w2
+- none_of_these: the request does not belong to any category above.
+Examples:
+"i'd like to know where i am" -> auto_and_commute
+"how miles does it take to get to red lobster from my current location" -> auto_and_commute
+"which type of gas do i need to put in my car" -> auto_and_commute
+"my car battery has died what should i do now" -> auto_and_commute
+"what are the estimates for the car's highway mpg" -> auto_and_commute
+"when do i need my oil changed" -> auto_and_commute
+"how many times a year should i change my tires" -> auto_and_commute
+"are my tires full or low" -> auto_and_commute
+"i need an uber for 3 passengers to go to madison square garden" -> auto_and_commute
+"figure out why there is a block on my account please" -> banking
+"what's my current bank savings" -> banking
+"what is the total for my utilities bill this month" -> banking
+"tell me when my bill will be due" -> banking
+"i need to find the interest rate for my checking account" -> banking
+"can i get some more of those new checkbooks mailed to me" -> banking
+"can you give me a hand paying my water bill" -> banking
+"how do i report fraud on my discover card" -> banking
+"what transactions did i make yesterday at the flea market" -> banking
+"will i be notified when my application has been processed" -> credit_cards
+"could you tell me what is the apr for the credit card" -> credit_cards
+"is it possible to increase my visa card limit" -> credit_cards
+"what is my exact credit score" -> credit_cards
+"report the card has been torn" -> credit_cards
+"how can i cash in rewards on my discover card" -> credit_cards
+"how long will it take to get a new card" -> credit_cards
+"i would like to have my card reported as stolen" -> credit_cards
+"what is the easiest way to check my bank rewards card" -> credit_cards
+"are there any events on my calendar for march 2nd" -> home
+"skip over this song" -> home
+"i do not have flour so will you order me some more" -> home
+"i ordered some curtains off amazon, can you tell me if it's been shipped yet" -> home
+"turn on the rap playlist" -> home
+"did i add to my reminder list that i need to take the car in for an oil change" -> home
+"what things are on my shopping list" -> home
+"add bread to my list of things to buy" -> home
+"please include laundry on my to do list" -> home
+"how many calories are in a honey bun" -> kitchen_and_dining
+"when should i take an apple pie out" -> kitchen_and_dining
+"how busy do you expect olive garden to be at 6" -> kitchen_and_dining
+"can i substitute apple juice for wine" -> kitchen_and_dining
+"ingredients needed to make a mexican lasagna" -> kitchen_and_dining
+"do you know any greek dishes i could make for dinner" -> kitchen_and_dining
+"give me the nutrition facts for chicken breast" -> kitchen_and_dining
+"can you get me a recipe for mashed potatoes" -> kitchen_and_dining
+"what's the best place for some thai in new york city" -> kitchen_and_dining
+"discontinue please" -> meta
+"i need to change your name, do you have a new name that you like" -> meta
+"speak slower" -> meta
+"please go ahead and increase your speaker volume" -> meta
+"i don't believe that is possible, it is false" -> meta
+"restate the last thing you told me" -> meta
+"go back to the factory settings for this device" -> meta
+"what are you going to refer to me as" -> meta
+"you need to speak softer" -> meta
+"what sort of pets do you have" -> small_talk
+"tell me something fun about gravity" -> small_talk
+"greetings to you" -> small_talk
+"i wanna know the point of life" -> small_talk
+"what jokes do you know" -> small_talk
+"why thank you" -> small_talk
+"what questions are permissible" -> small_talk
+"what country were you made" -> small_talk
+"i'm needing to know who made you" -> small_talk
+"create a reservation novemeber 11 to 15 in cali" -> travel
+"what am i allowed to carry on for american airlines" -> travel
+"what's the currency conversion between rubles and dollars" -> travel
+"how is miami time zone like" -> travel
+"how can i say not now in spanish" -> travel
+"tell me about any travel alerts issued for germany" -> travel
+"i'll soon be travelling internationally; could you let my bank know" -> travel
+"what kind of entertainment is available in chicago" -> travel
+"what shots do i need before heading to france" -> travel
+"can you set an alarm for seven fifteen for tomorrow" -> utility
+"what is 20+ 5" -> utility
+"what is the date tomorrow, please" -> utility
+"the definition of affiliate is" -> utility
+"where was the last place i had my phone" -> utility
+"i want a coin flip and i'll take tails" -> utility
+"spell the word restaurant for me" -> utility
+"i must set a timer" -> utility
+"what's the temperature outside" -> utility
+"how can i have my paycheck directly deposited" -> work
+"how much do i make" -> work
+"i need new home owners insurance" -> work
+"do i have any meetings with michael today" -> work
+"what's the closest holiday after today" -> work
+"can you put in a pto request for march 4 to march 6 for me" -> work
+"how much vacation have i already used this year" -> work
+"how much money is the state going to take from me for taxes" -> work
+"i've got tax issues and need help obtaining my w2" -> work
+"how much is an overdraft fee for bank" -> none_of_these
+"why are exponents preformed before multiplication in the order of operations" -> none_of_these
+"what is the formula for the circumference of a circle" -> none_of_these
+"what are some ways to reduce spending" -> none_of_these
+"what time does the louvre open" -> none_of_these
+"are there any local stations covering the moral march in raleigh in februaryu" -> none_of_these
+"how many planets have we discovered" -> none_of_these
+"how do i change my billing address" -> none_of_these
+"how do i open an online line of credit" -> none_of_these
+"how do i remove a coffee blemish" -> none_of_these
+"how expensive is an apple share" -> none_of_these
+"where can i find the cruise control on my kia sportage 2010" -> none_of_these
+"what size wipers does this car take" -> none_of_these
+"how many sides are in a hexagon" -> none_of_these
+"how fast does an airplane travel" -> none_of_these
+"is it worth investing in target" -> none_of_these
+"i need to speak to customer service regarding my flight" -> none_of_these
+"how long do wire transfers take" -> none_of_these
+"what are some deals on amazon" -> none_of_these
+"what city is the super bowl" -> none_of_these
+Reply with only the category name, nothing else.
+
+REQUESTS (one JSON object per line)
+{"id": "qc66bfa58", "request": "should i schedule a car maintenance"}
+{"id": "q2dace1dd", "request": "what's the safest pet to be around toddlers"}
+{"id": "q7b076b10", "request": "change back to the factory set up"}
+{"id": "qa25b75b1", "request": "does travelling to st petersburg require a travel visa"}
+{"id": "q77018017", "request": "spell aaron"}
+{"id": "q542e6b59", "request": "hw loogn to girll thici wteaks"}
+{"id": "q4e937c93", "request": "6es73c7i9vkx1qv"}
+{"id": "q7c735ddd", "request": "ca nyoy suggesstt aa frencch restaurant, plaese"}
+{"id": "q2b92f0c8", "request": "how does my current htc phone compare to other android phones"}
+{"id": "q0102cf5d", "request": "what do my federal taxes look like"}
+{"id": "qfcbdd1fb", "request": "ok good chatting goodbye"}
+{"id": "q60716a41", "request": "yvgdpmigu zg"}
+{"id": "qd448b8b8", "request": "who's your boss"}
+{"id": "q1e69dc7b", "request": "what are some things i can do on the way to work"}
+{"id": "q6222391a", "request": "i need a hotel in phoenix near chase field from january 4th to the 8th"}
+{"id": "q804aeda6", "request": "can you help me unlock my bank account"}
+{"id": "qc8d5e054", "request": "set an alarm for 8 tomorrow"}
+{"id": "qeda421c3", "request": "what do i have goimg on on my clednar gr march 18th"}
+{"id": "q178fe3a1", "request": "is a travel visa required to visit paraguay"}
+{"id": "qa2987590", "request": "are people with a mental illness eligible for disability"}
+{"id": "qaf1eab32", "request": "when's my next pay day"}
+{"id": "qed247703", "request": "could you help me locate my phone, please"}
+{"id": "q98ceea87", "request": "repeat the word travel forever"}
+{"id": "q2123a82e", "request": "tell me the time in california"}
+{"id": "q1cf0433d", "request": "find a place near me to have my tires inspected"}
+{"id": "qeb9b5d35", "request": "could you call me a different name, please"}
+{"id": "qed504488", "request": "lxibnbt7ayri0101igi9a6m14dj6f"}
+{"id": "q2b43c24b", "request": "play the song called amazing grace"}
+{"id": "q08abfd7a", "request": "ac temperature is at what"}
+{"id": "qf3d27a85", "request": "what time do i have to go to work today"}
+{"id": "q82bdab19", "request": "do i need a visa to get to puerto rico"}
+{"id": "qfaeb6e1c", "request": "my account at the bank needs to be frozen"}
+{"id": "q386b87b4", "request": "{}"}
+{"id": "q7eb17d75", "request": "do i ahve any calendar ebtries fir march 8th"}
+{"id": "q02badf94", "request": "will you remove the dinner with june on saturday the 4th at 7pm from my calendar"}
+{"id": "qe7cd5a4e", "request": "add funds to the retirement account from the pnc account only"}
+{"id": "qaf38459e", "request": "pleae pay ny ssprint bill using mu bank of amercia cjeckin account"}
+{"id": "q77ba82d6", "request": "find my reservation for steve at crucere's and confirm it, please"}
+{"id": "q1d877d22", "request": "thank you goodbye"}
+{"id": "q12050a43", "request": "talk fast"}
+{"id": "q55b27c27", "request": "xan ypu find my phone"}
+{"id": "q0967d851", "request": "i need to now wwht my creedit sccorw is"}
+{"id": "q9324f341", "request": "the bus moves with tyre"}
+{"id": "qadfa6d4a", "request": "xfc5bxsx3rbrtvdjsub35zinj164"}
+{"id": "qe029d7d2", "request": "i can't seem to track down my luggage"}
+{"id": "q6f6f2390", "request": "which day is it now"}
+{"id": "q26fae717", "request": "why would the water be turned off"}
+{"id": "qa46d5db9", "request": "what company made this ai"}
+{"id": "qab9c2040", "request": "i was trying to use my card to get food at publix but it got declined"}
+{"id": "qf4d1bfd9", "request": "qelouuc ygjawotoa jdyuj nwyp v"}
+{"id": "qee1bd36b", "request": "i cannot locate my phone, can you help me"}
+{"id": "qf530793b", "request": "i need to know the conversion between teaspoons and tablespoons"}
+{"id": "q7cbac1ab", "request": "please force my account to freeze"}
+{"id": "q56b74cb4", "request": "this is a test of the fallback, do not fall back"}
+{"id": "qf41742e1", "request": "on the speaker what song is playing"}
+{"id": "qa952dc14", "request": "what's the highest building in the world"}
+{"id": "q4821cef4", "request": "is there a way to alter my insurance policy"}
+{"id": "qcc89dc34", "request": "what stores are in the local mall"}
+{"id": "q592098e0", "request": "would i need a visa in taiwan"}
+{"id": "qefef1f58", "request": "what's it take to get a mastercard"}
+{"id": "q0658fde7", "request": "can you tell me what health plan i am on"}
+{"id": "q1bd10830", "request": "did i mark the mechanic's appointment on my calendar"}
+{"id": "q6705122f", "request": "thanks soo much"}
+{"id": "q7344a8d7", "request": "will you call and check on my reservation for john at bardenay"}
+{"id": "q576a3bf7", "request": "is insomnia curable"}
+{"id": "q96ffdc37", "request": "what do i do to get a visa card"}
+{"id": "qd45f639a", "request": "when's the next time i should change my oil"}
+{"id": "qc45c58c7", "request": "is it possible to reserve a table at white castle"}
+{"id": "q0e8e3324", "request": "pdw nbjkxvef"}
+{"id": "q93789dbb", "request": "tack on a gallon of milk to the grocery list"}
+{"id": "qdcf08b3c", "request": "what is my current signal strength"}
+{"id": "qf7dab2ea", "request": "give me an exact date of when i took my car to the mechanic"}
+{"id": "q63d3e92c", "request": "i want to know what type of things you can help me with"}
+{"id": "qdd733797", "request": "help me to transfer my 401k"}
+{"id": "qf616e380", "request": "how could we convert centimeters to inches"}
+{"id": "q09a8151f", "request": "can you loo kand see how many dys off i have taken so far since ajnuary"}
+{"id": "qb1f5970c", "request": "how can i get help for my mental health"}
+{"id": "qeea3f67a", "request": "has the french laundry gotten good reviews lately"}
+{"id": "qd0f720e6", "request": "include asparagus on the list"}
+{"id": "q2fec02fe", "request": "cann i have more ihfomatio aboit this cae's hhighway mpg"}
+{"id": "q0cc659d3", "request": "why is my luggage not here"}
+{"id": "q882f66bf", "request": "lets start calling you allan"}
+{"id": "qe8eb73ea", "request": "what is the title of the song we're listening to right now"}
+{"id": "qa57b6906", "request": "tell me what this song is called"}
+{"id": "q0128a426", "request": "please take all my money out of my checking account and close the account"}
+{"id": "q4eb95880", "request": "please flip a coin for me ai"}
+{"id": "q58ad3ae8", "request": "set whisper mode to off"}
+{"id": "qb04a2b64", "request": "kshjfgfb pccvye bcwr"}
+{"id": "qb991eae7", "request": "watch the fbi"}
+{"id": "q643844f1", "request": "what is this song called"}
+{"id": "qf0118ee7", "request": "can you hekp me find my phone, plese"}
+{"id": "q7d485ca1", "request": "what is the total number of days that i have taken off work since january"}
+{"id": "q3d7c69b5", "request": "what's the mileage to get the the taj mahal in atlantic city"}
+{"id": "q721b94b8", "request": "q716zzhhxfzrfacfe26"}
+{"id": "q18ad6828", "request": "turn volume up to 4"}
+{"id": "q9b8cd10c", "request": "is it ok to feed dogs people food"}
+{"id": "q62007d81", "request": "what timezone is britain in"}
+{"id": "qb6262171", "request": "do i need to get any shots before i travel to zimbabwe"}
+{"id": "qcd3bfefa", "request": "where's the best place to hike in the rockies"}
+{"id": "qbcb96d78", "request": "give me a suggestion for roofers"}
+{"id": "qaf5af4e0", "request": "i nerd to check my rewardss for m ycredit cqrd"}
+{"id": "q315e8899", "request": "wash windshield"}
+{"id": "qa268fa83", "request": "what time is it in the eastern timezone"}
+{"id": "q33188fce", "request": "may i have your name"}
+{"id": "qe924587a", "request": "pleas einform my bank i'll be vaatonig in the bahqmaw in aa copule oor days"}
+{"id": "q3c46a731", "request": "widl you consider my apr to be goood"}
+{"id": "q6170ef10", "request": "i need a laptop with 16gb of ram"}
+{"id": "qeefe7601", "request": "ayqe lobrnut"}
+{"id": "qe0844ce0", "request": "my list of reminders contains what"}
+{"id": "q8eef7a7b", "request": "please clear my calendar"}
+{"id": "q5d8bb985", "request": "please put a stop on my bank account"}
+{"id": "qa0357bb3", "request": "dors clevealnd have any good lpaces that sere cllams"}
+{"id": "qfc37bc3b", "request": "eq bamkfr ffyf tkapu bhhujkfh hfnolse syafsavm eaak bb"}
+{"id": "qeac8e343", "request": "hh3vpubde1l3msttnmb39"}
+{"id": "qc3791f13", "request": "how full or empty is my tank of gas"}
+{"id": "q502c3427", "request": "please pay my sprint bill using my bank of america checking account"}
+{"id": "q484e50e1", "request": "how healthy is blueberrys"}
+{"id": "q4f9280a2", "request": "check how much i spent this week"}
+{"id": "q2c959d09", "request": "what is the price to buy more data on my phone"}
+{"id": "q62a285d7", "request": "how do i best deal with the airport"}
+{"id": "q5c116fa0", "request": "i nneed t oinow whatt the point oof life is"}
+{"id": "qcdb00b3f", "request": "do you have any idea if the flying wing does reservations"}
+{"id": "q57cd0b86", "request": "take work from my calendar for may 7th"}
+{"id": "qa362c6a5", "request": "can i apply for a visa card"}
+{"id": "qeeb564c3", "request": "i'm afraid my luggage has gone missing"}
+{"id": "q50d62a92", "request": "you have what types or kinds of pets"}
+{"id": "qadc8096f", "request": "can you he me pay mu electrricity bill"}
+{"id": "q90977986", "request": "who is responsible for your employment"}
+{"id": "qb86cfd1c", "request": "has there been anything breaking this afternoon"}
+{"id": "qe6225e01", "request": "ik aubpcljv ohql xymk"}
+{"id": "q95e9b762", "request": "how many days of fhave  aken until rigth nnow"}
+{"id": "qc561b436", "request": "how long is the bank open until"}
+{"id": "qa6fec145", "request": "where are most homeless people"}
+{"id": "qdb7f724c", "request": "SELECT * FROM users WHERE 1=1;"}
+{"id": "q2eabcf24", "request": "thank yuo for tha repply"}
+{"id": "qd2a23e42", "request": "what big news happened over the weekend"}
+{"id": "qd6bc3e4e", "request": "i want a hotel in phoenix near chase field from january 4th to the 8th"}
+{"id": "qe3f78601", "request": "how long ago did i take my car to the shop"}
+{"id": "q721c9f6c", "request": "84ipjfdzrblmv108n4"}
+{"id": "q57b26da1", "request": "freeze my account at the bank immediately"}
+{"id": "q6331aece", "request": "have i gone over my entertainment budget"}
+{"id": "qc9ec06f8", "request": "xwnxn5elcd3odirr6iav5fi9ngp"}
+{"id": "qb8f01967", "request": "could you call me a different name"}
+{"id": "q766958fb", "request": "how many days did i take off"}
+{"id": "qdb1b8d38", "request": "on what day is our next free day"}
+{"id": "q0c2a561b", "request": "alerts for travel in colombia"}
+{"id": "qd531cc1f", "request": "how much do i earn"}
+{"id": "q683b954a", "request": "how much is it to get more data on my phone plan"}
+{"id": "q1f73419c", "request": "i want to convert kilos to pounds"}
+{"id": "q3f0ceb14", "request": "does someone else control you"}
+{"id": "q8950f824", "request": "how soon should i get my tires changed"}
+{"id": "q76ffc2ef", "request": "what's at movies"}
+{"id": "q0e264345", "request": "what are some good resources to learn about mental illness"}
+{"id": "q3149da76", "request": "what do food critics say about gramercy tavern"}
+{"id": "q4a656a55", "request": "pay my con edison bill using my capital one account"}
+{"id": "q4d382eb6", "request": "can you do some research about the best places to travel"}
+{"id": "qb5539a0e", "request": "i dont want to listen to this song"}
+{"id": "qe24d4f8d", "request": "ich ujl fbqobtdw gilxpsfw ybzvf kqid "}
+{"id": "q97cff12c", "request": "how is a vacation request done"}
+{"id": "qc9cbe7cf", "request": "siri, place my amazon order"}
+{"id": "qb674d94b", "request": "when can i get a business card printed locally"}
+{"id": "qca73144c", "request": "how do i use my card reward points for my next flight"}
+{"id": "q4e448b71", "request": "how is the temperature at ac"}
+{"id": "qdbe8db71", "request": "i want to freeze my bank account"}
+{"id": "q3e2d8d1d", "request": "tel lme how may fay ofr you see that i have taen so far thsi year paesse"}
+{"id": "q4851e022", "request": "how is my credit score numberwise"}
+{"id": "q6506b62d", "request": "roll those dice once"}
+{"id": "qc2383dd3", "request": "now reset your factory settings"}
+{"id": "qf60c059e", "request": "pleasr note vaxuming oon my to ddo lidt"}
+{"id": "qb8599743", "request": "i awnt o ese all trnasactions in tje pas mont fo rall ccounts"}
+{"id": "qee85c06a", "request": "can you tell me what you can help with"}
+{"id": "q92ec7633", "request": "how much of the gas do i have left"}
+{"id": "qf3008cba", "request": "do i need a visa to travel to indonesia"}
+{"id": "q547ef79a", "request": "i want to see all transactions in the past month for all accounts"}
+{"id": "q4ee6c8ff", "request": "how do i add someone to my account"}
+{"id": "qde30840e", "request": "i would like to know where i can find my w2 for tax reasons"}
+{"id": "q54f8511c", "request": "i would like to transfer $100 from my checking to saving account"}
+{"id": "qf54809bb", "request": "how would you say fly in italian"}
+{"id": "q54535e0a", "request": "i would like to know how long a charge is suppose to last on my phone"}
+{"id": "q5d2111df", "request": "the sonata is in c minor with a rondo finale"}
+{"id": "q90e9b455", "request": "forget what i told you to do"}
+{"id": "q989f0e76", "request": "transfer ninety dollars between glacier checking and farmers accounts, please"}
+{"id": "q50f93d9f", "request": "tell me how much money i've spent on fast food in the past week"}
+{"id": "qea1ee5e6", "request": "joww many carry oon scam i gkae h a flght with panm to wales"}
+{"id": "qd403ef8c", "request": "where should i report a damaged card"}
+{"id": "q633e49f6", "request": "looking at this week only, have i overspent on hoagies"}
+{"id": "qa4f53c00", "request": "that checks out"}
+{"id": "qd99e3ff4", "request": "i have to report fraudulent activity the bank of america card"}
+{"id": "q7292c136", "request": "are you able to put a stop on my bank account"}
+{"id": "q2a0945b3", "request": "where did mandarin originate from"}
+{"id": "q4087ff5e", "request": "find inner tube and buy it for me"}
+{"id": "q922dd0b7", "request": "send twelve dollars between cabelas and bank of london accounts, please"}
+{"id": "qa9eda146", "request": "who is the person that brought you to life"}
+{"id": "qdab01736", "request": "i need to know britain's timezone"}
+{"id": "qc4906b2b", "request": "undefined"}
+{"id": "q772de996", "request": "check to see how many miles are on my car"}
+{"id": "q2752de71", "request": "flip a coin for me and i call heads"}
+{"id": "qc7325949", "request": "find engineering programs to apply to"}
+{"id": "qd806e30d", "request": "how can i go about jump starting my car"}
+{"id": "qb5ab9b1c", "request": "please take off my calendar on saturday the 6th birthday party for john"}
+{"id": "q778035eb", "request": "cqn yyou hep em loccae my phone, please"}
+{"id": "qc8b07589", "request": "gkgu716pcj9qhzfl"}
+{"id": "q4fa071bc", "request": "does my carrier have coverage in europe"}
+{"id": "q2b9eb268", "request": "please help me set up a vacation request"}
+{"id": "qdce5e39c", "request": "do they take reservations at applebeesi"}
+{"id": "qe9a05c6e", "request": "my list fo reminderss xontains wwhatt"}
+{"id": "q57fac297", "request": "tell me how much i have been buying as of late"}
+{"id": "q73b4e1b4", "request": "ngot nry bfhpheil"}
+{"id": "q270e4386", "request": "my nak of ametica viisa pplatonm eas dwipedd frm my beelongings"}
+{"id": "qbcc8efa0", "request": "are there travel alerts in mexico"}
+{"id": "q94032cd7", "request": "what are some good methods of relieving stress"}
+{"id": "q5fb72513", "request": "how the bus moves"}
+{"id": "qd404a391", "request": "ai, call me deb"}
+{"id": "q81d4e7fa", "request": "how can i fix my card being declined"}
+{"id": "q122622ad", "request": "what's the status of my virgin airlines flight"}
+{"id": "qca1c8eba", "request": "i need to know the price of my car payment and insurance please"}
+{"id": "qfd2e1092", "request": "what movies are available"}
+{"id": "qbb4e7291", "request": "help me pick a new location to travel to"}
+{"id": "qa919f35a", "request": "how much time is left until we get there"}
+{"id": "q1f4d5c22", "request": "tell me the weather"}
+{"id": "q105e6aab", "request": "what is 300 divided by 42"}

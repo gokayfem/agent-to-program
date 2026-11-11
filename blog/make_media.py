@@ -325,8 +325,9 @@ PHASES = ["steady", "new groups", "out-of-scope burst", "noisy input", "policy c
 def draw_loop(ax, upto=None, label_size=9.2, show_phase=None, k=1.0):
     xs, series, bounds, n, totals = loop_series()
     ax.set_xlim(0, n)
-    ax.set_ylim(0, 62)
-    ax.set_yticks([0, 20, 40, 60])
+    top = 10 * int(np.ceil(max(max(v) for v in series.values()) / 10))      # highest gridline, from the data
+    ax.set_ylim(0, top * 1.16)
+    ax.set_yticks(list(range(0, top + 1, 10 if top <= 50 else 20)))
     ax.yaxis.set_major_formatter(lambda v, _: f"{v:.0f}%")
     ax.set_xticks([0, 500, 1000, 1500, 2000, 2500])
     ax.set_xticklabels(["0", "500", "1,000", "1,500", "2,000", "2,500 requests"], fontsize=label_size - 0.2)
@@ -340,7 +341,7 @@ def draw_loop(ax, upto=None, label_size=9.2, show_phase=None, k=1.0):
             continue
         if i:
             ax.axvline(a, color=AXIS, lw=0.8, zorder=1)
-        ax.text((a + b) / 2, 60.5, PHASES[i], fontsize=label_size, color=INK2, ha="center", va="top")
+        ax.text((a + b) / 2, top * 1.13, PHASES[i], fontsize=label_size, color=INK2, ha="center", va="top")
     for key in ("B*", "D+*", "C*"):          # the two guarded lines coincide until the policy change
         x, y = np.array(xs), np.array(series[key])
         if upto is not None:
@@ -354,7 +355,7 @@ def draw_loop(ax, upto=None, label_size=9.2, show_phase=None, k=1.0):
 
 def fig_loop():
     fig = new_fig(5.0, "A production loop, replayed on 2,790 real requests",
-                  "Wrong answers per 100 requests. Refused requests go to the agent (the human label). The two guarded lines coincide until the last phase.")
+                  "Wrong answers per 100 requests. Anything the program refuses goes to the human label.")
     ax = fig.add_axes([0.075, 0.11, 0.87, 0.56])
     totals = draw_loop(ax)
     y = 0.80

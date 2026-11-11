@@ -42,6 +42,27 @@ def pct(x, d=0):
 
 
 # --------------------------------------------------------------------------- numbers
+def closed_numbers() -> dict:
+    """Experiment 10: a hosted model on the same held-out rows as the local LLM."""
+    r = J("exp10_closed.json")
+    m, loc = r["model"], r["compared_with"]
+    pp, b, st = r["populations"], r["bad_inputs"], r["stacks_mix_70_20_10"]
+    w = r["same_wrong_answer_as_fast_model_on_unseen"]
+    un, oos = pp["never-seen groups"], pp["out of scope"]
+    return {
+        "o_n": f"{r['n_requests']:,}",
+        "o_unseen": pct(un[m]["correct"]), "q_unseen": pct(un[loc]["correct"]),
+        "o_unseen_wrong": pct(un[m]["wrong_answers_per_request"], 1), "q_unseen_wrong": pct(un[loc]["wrong_answers_per_request"]),
+        "o_none": pct(oos[m]["none_exit"]), "q_none": pct(oos[loc]["none_exit"]),
+        "o_inj": b[m]["injection"]["answered_in_scope"], "q_inj": b[loc]["injection"]["answered_in_scope"],
+        "o_inj_n": b[m]["injection"]["n"],
+        "o_same": pct(w[m]["same_wrong_label"]), "q_same": pct(w[loc]["same_wrong_label"]),
+        "o_always": pct(st[m]["always-LLM"]["wrong"], 1), "o_guard": pct(st[m]["fast[G]+V -> LLM"]["wrong"], 1),
+        "o_naive": pct(st[m]["fast[R] -> LLM"]["wrong"], 1), "o_saved": pct(1 - st[m]["fast[G]+V -> LLM"]["llm_calls"]),
+        "o_floor": pct(st[m]["fast[G]+V -> agent"]["wrong"], 1),
+    }
+
+
 def numbers() -> dict:
     lat, L = J("exp_latency.json")["tier_ms_p50"], J("llm_latency.json")
     e1, e2, e3 = J("exp1_families.json"), J("exp2_novelty.json"), J("exp3_group_shift.json")
@@ -60,7 +81,8 @@ def numbers() -> dict:
     yrs = list(y)
     full = e8["builds"]["guards + gate(G) + verifier"]["bad_input_detail"]["injection"]
     sp, a, m = e9["spec"], e9["agent"], e9["modes"]
-    n_llm = sum(len(f.read_text().splitlines()) for f in (ROOT / "cache" / "llm").glob("*.jsonl"))
+    n_llm = sum(len(f.read_text().splitlines()) for f in (ROOT / "cache" / "llm").glob("*.jsonl")
+                if f.name.startswith(("qwen", "gemma")))          # local models; the hosted answers are counted separately
     return {
         "n_llm": f"{n_llm:,}",
         "fast_lo": f"{lat['tfidf-char+LR end-to-end']:.1f}",
@@ -97,6 +119,9 @@ def numbers() -> dict:
         "c4": pct(P["C*"]["by_phase"]["4"]["wrong"], 1), "naive": pct(P["B*"]["total"]["wrong"]),
         "pol": pct(P["C*"]["phase5_affected"]["wrong"]), "sh_req": e6["shadow_sweep"]["0.1"]["requests_until_breaker"],
         "ann": pct(P["D+*"]["phase5_affected"]["wrong"]),
+        "p5_n": e6["phases"]["5"]["n"], "sh40": e6["shadow_sweep"]["0.4"]["requests_until_breaker"],
+        "sh_late": (e6["shadow_sweep"]["0.1"]["requests_until_breaker"] or 10 ** 9) >= e6["phases"]["5"]["n"],
+        **closed_numbers(),
         "n_obs": sp["n_observed"], "n_adm": sp["n_admission"], "n_test": e9["n_test"],
         "ag_s": f"{a['latency_s']['p50']:.1f}", "st_s": f"{m['structured']['latency_s']['p50']:.1f}",
         "pr_s": f"{m['prose_hole']['latency_s']['p50']:.1f}",
@@ -212,8 +237,11 @@ def blocks(n: dict) -> list:
           f"naive one was wrong on {n['naive']} of the whole stream."),
         p(f"The fourth drift was a policy change: requests about physical cards moved from one department to another. The inputs "
           f"looked familiar and the program was confident, so {n['pol']} of the re-routed requests were answered under the old "
-          f"policy. Re-checking 10% of the fast answers took {n['sh_req']} requests to notice. Announcing the change, and switching "
-          f"off the affected answer class at once, brought it to {n['ann']}."),
+          f"policy. " +
+          (f"Re-checking 10% of the fast answers did not catch it in the {n['p5_n']} requests that followed, and re-checking 40% "
+           f"took {n['sh40']}. " if n["sh_late"] else
+           f"Re-checking 10% of the fast answers took {n['sh_req']} requests to notice. ") +
+          f"Announcing the change, and switching off the affected answer class at once, brought it to {n['ann']}."),
         image("production-loop.png", "Wrong answers per 100 requests across the five phases. The guards handle unfamiliar inputs. "
                                      "They cannot see a change of rules."),
         p("Two rules came out of this. A compiled answer has to carry the version of the contract it was compiled for. And a "
@@ -240,13 +268,32 @@ def blocks(n: dict) -> list:
         p("So the trace is evidence, not the specification. Compile from the contract, and check against reviewed outputs "
           "wherever you have them."),
 
+        h2("The same test with a frontier model"),
+        p(f"Everything above used a 4B model on my laptop as the LLM tier. So I gave the same contract and {n['o_n']} of the same "
+          f"held-out requests to Claude Opus 5.5 at medium effort. I had no API key on this machine, so it answered in blind "
+          f"batches through Claude Code subagents. That means real answers, but no latency and no cost figures."),
+        p(f"It was a different tier. On never-seen groups it was right on {n['o_unseen']} of requests against {n['q_unseen']}, "
+          f"with {n['o_unseen_wrong']} wrong answers against {n['q_unseen_wrong']}. It took the \"none of these\" exit for "
+          f"{n['o_none']} of out-of-scope queries against {n['q_none']}. It gave an in-scope answer to {n['o_inj']} of "
+          f"{n['o_inj_n']} prompt-injection strings, where the local model did for {n['q_inj']}. And when the fast model was wrong "
+          f"on a never-seen group, it repeated the same wrong answer {n['o_same']} of the time, against {n['q_same']}."),
+        p(f"That flips one conclusion. With the local LLM, the guarded fast tier cost nothing in quality. With Opus, asking the "
+          f"model every time was {n['o_always']} wrong, and the guarded fast tier in front of it was {n['o_guard']} wrong while "
+          f"saving {n['o_saved']} of the calls. The fast tier's own wrong answers were {n['o_floor']} of all requests. A naive fast tier "
+          f"in front of the same model was {n['o_naive']} wrong. The better the fallback, the more a careless compile costs."),
+
         h2("What this does not show"),
-        p("The LLMs here are 4-bit local models of about 4B parameters. A larger hosted model would change the numbers for the "
-          "LLM tier; the fast-tier results would stay. The last tier in these tests is the human label standing in for an agent. "
+        p("Outside that last section the LLMs are 4-bit local models of about 4B parameters. The frontier model ran on one frozen "
+          "split, in batches, without latency or cost. The last tier in these tests is the human label standing in for an agent. "
           "The harness was tested on one workflow, with candidate programs written by the coding agent after reading the recorded "
           "runs. And none of this touches perceptual work like video to Blender, where the verifier is the hard part."),
         p("I like where it landed. The idea survives with less magic than I hoped and more structure: a ladder of cheap answers, "
           "a gate that knows what it has not seen, a checker that is built differently, and a contract that outranks the trace."),
+        p("Correction, 11 November. The first version of this post said 65% of the re-routed requests were answered under the "
+          "old policy, and that re-checking 10% of the fast answers noticed after 400 requests. I had counted applications for a "
+          "new credit card as re-routed, and the policy text does not cover them. The naive program's total was given as 21%. "
+          "With only the request types the policy names, the numbers are the ones above, and the production-loop figure and the "
+          "film were redrawn."),
         p(("Code, the full report and the revised skill →", SOURCE)),
     ]
 

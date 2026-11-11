@@ -24,7 +24,14 @@ import pandas as pd
 from . import data
 from .perturb import typo_noise
 
-POLICY_GROUPS = ("damaged_card", "replacement_card_duration", "report_lost_card", "new_card")
+# Groups the policy change really re-routes: requests about a physical card. All three are
+# training groups, so the stale fast tier answers them confidently.
+POLICY_GROUPS = ("damaged_card", "replacement_card_duration", "report_lost_card")
+# Rows of these groups make up the policy pool. `new_card` is in the pool but is NOT re-routed:
+# in CLINC it means "apply for a new credit card", which the policy text does not cover. An
+# earlier version of this file relabelled it to banking; a closed model that correctly kept it
+# in credit_cards exposed the mistake (see exp10 and the correction note in REPORT.md).
+POLICY_POOL_GROUPS = POLICY_GROUPS + ("new_card",)
 POLICY_FROM, POLICY_TO = "credit_cards", "banking"
 
 
@@ -64,8 +71,8 @@ def pools() -> dict:
     ty["text"] = [typo_noise(t, 0.15, seed=i) for i, t in enumerate(ty.clean_text)]
     p["typo15"] = ty
     # policy-change pool: every test-partition / unseen row of the affected groups + a control sample
-    aff = f[f.group.isin(POLICY_GROUPS) & f.split.isin(["test_seen", "test_unseen"])].copy()
-    ctrl = p["test_seen"][~p["test_seen"].group.isin(POLICY_GROUPS)].sort_values("uid").sample(400, random_state=17)
+    aff = f[f.group.isin(POLICY_POOL_GROUPS) & f.split.isin(["test_seen", "test_unseen"])].copy()
+    ctrl = p["test_seen"][~p["test_seen"].group.isin(POLICY_POOL_GROUPS)].sort_values("uid").sample(400, random_state=17)
     pol = pd.concat([aff, ctrl]).copy()
     pol["old_label"] = pol["label"]
     pol.loc[pol.group.isin(POLICY_GROUPS), "label"] = POLICY_TO

@@ -1,0 +1,400 @@
+{"q": "can you help me get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "please give me the nutritional information for an egg", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "my credit card got torn and i need a new one", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what is my credit rating", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i say i'm sorry in chinese", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "you have yo go to school on calendar", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "find my cellphone for me!", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i'd like an uber for 6 people, going to walmart", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i am interested in acquiring a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how long until my next oil change", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how long does it take to get a new credit card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how many minutes should i set an alarm for this bake", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "not right now", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what does ferrari mean", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need help figuring out a new credit card to get", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "direct me to the application for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how can i get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "please help me report my lost card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i go about applying for a macy's credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "show me how to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "define the meaning of life for me", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "is it possible for me to get a better credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i wish to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "did i set march 10th as my doctor's appointment", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "is my tire pressure high", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how is my credit score numberwise", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "please tell me what today is", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "show me some options for new credit cards that i can apply for, please", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i intend to apply for an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to report a damaged card that was burnt", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what if you need to obtain a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "retrieve events on my calendar", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what is the process i need to follow to get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "give me some ideas of what to do during my trip to dallas", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what's the apr on my credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i am interested in applying for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how can i apply for a mastercard, please", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what's it take to get a mastercard", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you verify my recent visa card transaction", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "let me know when the replacement card will arrive", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i report that i actually lost my card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you repeat that", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "speed up your talking", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "could you please let me apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i report that i lost the card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "call me an uber please", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how often should i change the oil", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "please show me how to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i think i'd like to apply for an amex", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what is my credit score number", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i am hoping to apply for an amex card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i go about applying for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i want to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do applications for discover cards work", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i'm going to need an uber for 4 people to go to patty's bar", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "wake me up with an alarm at 6am", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can i apply for a discover card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "hey what do i do to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to apply for a discover card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how can i apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how can i request a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i want to report a damaged card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "where should i report a damaged card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to know the mpg of my car", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you please say that again", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i spilled wine on my credit card and now its all mushy and needs to be replaced", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "time to replace my credit card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what's 47 times 83", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "walk me through the process of applying for an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "thank you ever so much for that!", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to apply for a air canada card visa, can you help me", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i want to apply for a mastercard", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i didn't understand you", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "my tires are filled enough or no", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "contact bank and let them know about my travel plans", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you report a lost card for me", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "when is my new card expected to arrive", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "my card is damaged", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would love to get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to get a new credt card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what are the nutrition facts for peanut butter", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "show my transactions", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i apply for american express", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to apply for a credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i replace a damaged card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what steps do i need to take to report a card lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how many vacation days i have used", "raw": "work", "label": "work", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i cannot locate my phone, can you help me", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "that can't be true", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can i apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "does bank of america give credit cards to people like me", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "my visa has been damaged", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to know how to apply for a mastercard", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i report my very lost card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how many days off have i taken until right now", "raw": "work", "label": "work", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how can i get a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "no that isn't right", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can i apply here for a new card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "lost report card, need new one", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "tell me about this car's highway mpg", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what's the average cooking time for cooking wings", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i ask the ai to help me with math problem", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i feel like it is time for me to sign up for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "who do i call to report my card as lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "may i apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i can't use my card because it\u2019s broken", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "my card has become too frayed and torn to use", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i am flying to finland and wanna know the carry-on rules", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "where the bleep did i put my bleeping phone", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you find what my credit score is", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you tell me how to report a card lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how long will it takes to get a new credit card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i will be traveling to lima alert my bank", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to know the the carry-on restrictions for american airlines", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "find the square root of 1243435", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how do i submit an application for a discover card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "set up a report for a lost card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i want to apply for a alphabank card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what's the current apr on my credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can i get a new card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you help me find out how to get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "no, that is wrong", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "skip ahead one song", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you find any good places in cleveland that serve clams", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you tell me the meaning of fluctuate", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "application for a mastercard", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can i use apples instead of oranges in this recipe", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to get a new credit card application", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what is the process for reporting my card as lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i want the nutrition facts for buttered spaghetti", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what do i need to do to get an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how many minutes should i put meal the cake in the oven", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "tell my bank i'm in canada the entire week of the 6th to the 13th", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "let me know the date tomorrow", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "tell me what's on my calendar for march 22nd", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "help me get an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what is the largest transaction i have made on video games this month", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i wanna know the carry-on rules for the flight i have", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "my bank of america visa platinum was swiped from my belongings", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i lost my credit card recently  how long does take to get a new one in the mail", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "where's my phone at", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i'd love to set an alarm", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "when's the next time i should change my oil", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what's the best way to get a mastercard", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "is there a travel alert in spain", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "thanks so much", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what is the shipping status of my replacement card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i want to find a new credit card to sign up for", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "set an alarm for 8 tomorrow", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how can i find a new credit card to apply to", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what is the process to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what is 48 multiplied by 4 divided by 2", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you suggest a thai restaurant", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i desire to apply for a bank of america travel rewards credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "thanks for trying", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "where do i report that my card was lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "tell me what the gas mileage is on my car", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to know what my credit score is", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to know more about getting a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "who has the best credit card offering for a college student", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "remove grocery shopping from todo list", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "help me wake up with an alarm at 5:30am", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "show me my recent transactions from account xyz", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what are my reminders", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how can i apply for a discover card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "my capital one visa was taken without permission", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to apply for a new card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "set an alarm to wake me up at 5:30am", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "tell me how to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need a new credit card, show me suggestions", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i would like to know how many points have i earned with my credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what do i need to do to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "empty the contents of my to do list", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can you call the help desk line for my credit card company", "raw": "none_of_these", "label": "none_of_these", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "might i be able to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i wanna apply for a bank of america travel rewards credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i can't use my card because i damaged it", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what are some fun tourist things to do in mumbai", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "let me know what tomorrow's date is", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i have a card that needs replaced because my wine dumped wine on it", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what kind of credit card apr do i get", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i didn't catch that", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how does one apply for a master card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i want an uber to take me to walmart", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "can i get a brand new card please", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to get a mastercard somehow", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to apply for a bank of america travel rewards credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what are some cool tourist attractions in england", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how many points earned do i have with my american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what are some interesting things i can do while in raleigh", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "how many points have i earned with my paypal credit card so far", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "please apply cc visa card for me", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "that is most definitely false", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "please go though the bullet points on my reminder list", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "what's the answer to it all", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "i need to report that someone ran off with my td bank card earlier", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "who should i talk to about the fact that i inadvertently split my card almost in half", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_07", "via": "subagent batch"}
+{"q": "tell me spaghetti bolognese's nutrition facts", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how soon can i expect a replacement card for my lost card to arrive", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i accidentally deactivated the magnetic stripe on my visa debit card and i need to report it", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is my replacement card due to arrive in the mail today", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "will i get getting my new card anytime soon", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can i just use oil instead of vinegar", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you complete an application for a new credit card for me", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can i maybe apply for a new card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "could you share my credit score", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i need to know the time it takes to get a new credit card sent to someone who lost theirs", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is my credit score over 700 yet", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i'm too drunk to drive and need an uber home", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i gotta apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "my report card was lost help!", "raw": "none_of_these", "label": "none_of_these", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i got to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "someone used my chase card without my authorization", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "when will i received a replacement card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me how i can apply for a chase credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what new credit card should i submit an application for", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "walk me through applying for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i apply do get myself a visa", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can i apply for a paypal master card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how many carry ons can i take on a flight with panam to wales", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how many rewards points do i have on my rewards points i have on my mastercard", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "time to order and receive a new credit card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me the process of applying for a apollo card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "my report card was stolen", "raw": "none_of_these", "label": "none_of_these", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i would like to have an alarm set for me", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "would you say it again please", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i must apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i have a damaged card that needs replaced because my son dropped it in a blender", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "list the steps for applying for an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i spent 34 dollars for 12 gallons of paint what is the average price for each gallon", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i recently lost my credit card and need to know how long it takes to get a new one mailed to me", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i'd say no", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "could steak be used instead of chicken", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how long until i get my replacement card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "find out if there's a new credit card that suits me", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i sign up for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i would like to apply for a bank of america travel rewards credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i want to report a damaged card that my cat shredded with its claws", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "speak more quickly", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i get a new credit card sent to me", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how long before my new card is mailed to me", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me what the meaning of life is", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how can i apply for a visa card, please", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i need to to know how to report a lost card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i sat on my credit card and broke it in half and need it replaced", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "are my tires filled enough", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you apply for idaho independent card for me", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i lost my card and need to report it", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what is amount of time it takes to get a new credit card i lost mine recently", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me nutritional info for beans", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can i bring suntan lotion in my carry on", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "show me how i can get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i want to submit an application for a barclay's card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i would like to report my card damaged since i accidentally spilled gorilla glue all over it and the numbers are now obscured", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i would like to apply for a master card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what credit score number do i have", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "if something is 15% off $35, how much is it", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "visa card, i want to apply", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "go ahead and give me the tire pressure of my vehicle", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what if you want a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me how to apply for an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "take everything off my to do list", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how much longer before the card is mailed to me", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "let me know the wait on a replacement credit card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you tell me if i might be able to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i want to know how to go about getting a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is it possible to get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i cannot use my card cuz it's damaged", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "am i able to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i'm unable to use my card because it's been ruined", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "that is the wrong answer", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i apply for a visa card, please", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i'm going to be in mexico from thursday to friday, so can you let my bank know", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "search steps for how to report a card lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "apply for an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i want to apply for a discover card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "no, definitely not", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you suggest a french restaurant, please", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how much did i spend on my most recent transaction", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i would like to report my american express card stolen", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what if you need to get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is it possible to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i lost my card, what do i do next", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what are some fun cheap activities to do in colorado", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i wanna apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how healthy is a cheeseburger", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what's the phone number for my credit card company", "raw": "none_of_these", "label": "none_of_these", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what do i do about a card that's too messed up to be properly scanned", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "please note vacuuming on my to do list", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i need to know how to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i need some assistance paying my utilities bill", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what are some good places to go out for dinner in my area tonight", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "please tell me how to get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me the the carry-on restrictions for american airlines", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you find out how to report a damaged card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you help me sign up for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how would you say fly in italian", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i can't use my card because it\u2019s messed up", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you help me apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "am i eligible for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you send me a new credit card please mine is getting old and unusable", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i change the speed of your voice", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what does it take to get a new card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me about the chase credit card application process", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how long does it take to cook steaks", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "where can i apply for a black amex card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you tell me how to apply for a western card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "my card became damaged when i dropped it in the parking lot and it got ran over", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you do some research about the best places to travel", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is the marathon on friday added to my calendar", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what should i do if i need to report my card lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you let me know the info on how to apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "my dog swallowed my credit card and i need a new one", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i need to replace a card that my daughter spilled juice on", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what is the shipping time for my card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "that is incorrect", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what exactly is the tire pressure for the car", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i wanna know my credit card's rewards balance", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "please help me apply for a silver card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "show me the application for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what's the procedure to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what do i do to get a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i can't use my card because it\u2019s damaged badly", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "am i eligible for a new credit card application", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "great, thanks!", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what's my car's mpg, please", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i have lost my card, what am i supposed to do", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is this how i apply for a discover card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what does epicurean mean", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i would like to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "who should i apply for a credit card for", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what is the time frame for sending a customer who lost their credit card a new one", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "get a uber for two to go to a romantic dinner at mcdonalds", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "assist me in getting a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "where can i go to eat", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what's the process for getting an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i need to tell you about my lost card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "where can i get my w2 from", "raw": "work", "label": "work", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "sorry, i didn't catch that could you say it again", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can i talk to someone to let them know my card was damaged from being melted on a radiator", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i need to know all my spending transactions", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is it possible to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i get a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i want to apply for a wells fargo credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how long do i need to cook chicken", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "ai is a helpful item to have in my home, thank you", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "when will the replaecment card arrive", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "could you hit next", "raw": "home", "label": "home", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can you suggest a few credit cards that have good rewards points", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what is the shipping wait for my card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is there a list of good credit cards i can choose from to apply for", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "right now, i need to know the meaning of life", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "do you have any information on how to open a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is this where i apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how much time before my new card is mailed to me", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how to apply for platinum card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "help me apply for an american express card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what if you want to obtain a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i report the card as lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "apply for a bank of america travel rewards credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i apply for a barclay's card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what's the apr on my capital one venture card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can credit card companies expedite delivery of reissued credit cards", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i would like to apply for a green card", "raw": "none_of_these", "label": "none_of_these", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what information can you give me on the meaning of life", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "apply for a kbc card for me", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can i please get a new card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i want to know my credit rating", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "try to speak slowly", "raw": "meta", "label": "meta", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me how to apply for a credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what's the meaning of naff", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me the answer to 1000 divided by 40", "raw": "utility", "label": "utility", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what is the recommended interval to get my oil changed", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what is the carry-on policy for flights on southwest", "raw": "travel", "label": "travel", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i need to apply for a new credit card that will match my needs", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i apprecaite the help from you", "raw": "small_talk", "label": "small_talk", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me how to go about reporting a damaged card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "who do i speak with about my card that was lost", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how long before the replacement card is mailed to me", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what is the procedure for signing up for a new allstate plan", "raw": "work", "label": "work", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "is my apr rate better than most", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "tell me how to apply for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what do my visa points look like", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "give me a list of places that serve the best wings in charlotte", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "i want to put in an application for a line of a credit card how do i do that", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "please tell me how to go about reporting a lost card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how do i report that i lost my card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can i get peppers instead of onions", "raw": "kitchen_and_dining", "label": "kitchen_and_dining", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "can i complete an application for a new credit card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how long does it take for a credit card to be reissued and mailed to me", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "what do i do with a damaged credit card", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "pay $175 on my visa", "raw": "banking", "label": "banking", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "call an uber to take a group of 4 from this bar to the one on maple st", "raw": "auto_and_commute", "label": "auto_and_commute", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "help me apply for a visa card", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}
+{"q": "how would i apply for an american express", "raw": "credit_cards", "label": "credit_cards", "p": NaN, "n_gen": null, "batch": "batch_08", "via": "subagent batch"}

@@ -23,6 +23,13 @@ def fig(name, alt, caption):
             f'<p align="center"><sub>{caption}</sub></p>\n')
 
 
+def shadow_line(n: dict) -> str:
+    if n["sh_late"]:
+        return (f"re-checking 10% of fast answers did not catch it within the {n['p5_n']} requests that followed, "
+                f"re-checking 40% took {n['sh40']}.")
+    return f"re-checking 10% of fast answers took {n['sh_req']} requests to notice."
+
+
 def extra() -> dict:
     e1b, e2, e3b = J("exp1b_finetune.json"), J("exp2_novelty.json"), J("exp3b_cal_groups.json")
     e5b, e6, e7, e8 = J("exp5b_llm_other.json"), J("exp6_stream.json"), J("exp7_news_drift.json"), J("exp8_kernel.json")
@@ -68,7 +75,8 @@ Cursor and others) and the test bed behind it. The skill is a compile procedure 
 deterministic parts of a recurring LLM workflow become code, each judgment becomes a typed decision answered
 by the cheapest tier that is sure of it (cache, rules, a small decision model, one narrow LLM call), every
 fast answer gets an independent check, and anything the program has not earned the right to answer goes back
-to the agent. The test bed is nine experiments on public human-labelled data with real local models. They
+to the agent. The test bed is ten experiments on public human-labelled data: nine with real local models, one
+with a hosted frontier model as the LLM tier. They
 measure where this works and where it fails without telling you.
 
 The earlier projects in this series, [Video 2 GLSL](https://github.com/gokayfem/shader-skills),
@@ -109,6 +117,8 @@ measured here:
   {n['same_tf']}, an LLM {n['same_llm']}.
 - **The LLM fallback is not automatically safe.** A local 4B model took its "none of these" exit for only
   {n['llm_none']} of out-of-scope queries and gave an in-scope answer to {n['inj']} of {n['inj_n']} prompt-injection strings.
+  A frontier model on the same requests took the exit for {n['o_none']} and answered {n['o_inj']} of {n['o_inj_n']}, so
+  measure the model you have.
 - **Programs rot.** A router compiled on one year of headlines went from {n['news_first']} to {n['news_last']} wrong answers
   over five years, and it was still answering. After a change of policy, {n['pol']} of the affected requests were
   answered under the old rule.
@@ -221,8 +231,9 @@ The full procedure is in [`skills/workflow-compiler/SKILL.md`](skills/workflow-c
 
 ## The evidence
 
-Nine experiments, all run on one Apple M4 with local models. {n['n_llm']} real LLM answers are stored in
-`cache/llm/`; 20 random group splits were used wherever no LLM was needed. [`REPORT.md`](REPORT.md) has every
+Ten experiments. Nine ran on one Apple M4 with local models; the tenth gave {n['o_n']} of the same held-out
+requests to a hosted model, Claude Opus 5.5 at medium effort. {n['n_llm']} real answers from the local LLMs are
+stored in `cache/llm/`; 20 random group splits were used wherever no LLM was needed. [`REPORT.md`](REPORT.md) has every
 table and is generated from `results/*.json`.
 
 | # | Question | What came out |
@@ -232,10 +243,11 @@ table and is generated from `results/*.json`.
 | 3 | Does calibration survive groups it never saw? | No with a random split ({n['r_sil']} wrong on unseen groups, {n['r_viol']} of {n['splits']} splits). Mostly with held-out groups and a familiarity gate ({n['g_far']} wrong per unseen request), but it still went over budget in {n['g_viol']} of splits; with {n['g_hi']} calibration groups instead of {n['g_lo']}, {n['g_hi_viol']} instead of {n['g_lo_viol']} |
 | 4 | What can verify a fast answer, and at what cost? | Agreement with a character n-gram model: {n['tf_ms']} ms, rejects {n['tf_catch']} of unseen-group errors. Checkers on the same embedding repeat the mistake. The cost of a verifier is its false rejects |
 | 5 | How good is the LLM tier, and whole stacks? | Qwen3-4B: {n['llm_seen']} on familiar requests, {n['llm_unseen']} on unseen groups, "none" exit on {n['llm_none']} of out-of-scope queries. A guarded fast tier in front of it: {n['stack_wrong']} wrong against {n['llm_wrong']} for always-LLM, with {n['stack_calls']} calls per request. Zero-shot on 150 intents the LLM scores {n['fine_llm']} against {n['fine_fast']} for the trained fast model; on Spanish versions of familiar requests it scores {n['es_llm']} against {n['es_fast']} |
-| 6 | What happens in a production loop with drift? | Over {n['n_req']} replayed requests: naive {n['tot_naive']} wrong, guarded {n['tot_guard']}, guarded with the contract change announced {n['tot_ann']}. Shadow sampling at 10% needed {n['sh_req']} requests to notice the policy change. Ungated self-training was the worst policy |
+| 6 | What happens in a production loop with drift? | Over {n['n_req']} replayed requests: naive {n['tot_naive']} wrong, guarded {n['tot_guard']}, guarded with the contract change announced {n['tot_ann']}. After the policy change {n['pol']} of the re-routed requests were answered under the old rule; {shadow_line(n)} Ungated self-training was the worst policy |
 | 7 | And under natural drift? | Five years of dated headlines: a static program goes from {n['news_first']} to {n['news_last']} wrong among its answers. A shadow breaker opens in {n['breaker']}. Gated quarterly recompiles stay at {n['gated_silent']} but keep only {n['gated_cov']} coverage |
 | 8 | Does a real compiled program pass admission? | The full build is refused: {n['full_silent']} silent errors, {n['full_llm_wrong']} of {n['full_llm_n']} from the LLM tier and {n['full_local_wrong']} of {n['full_local_n']} from the local tiers. Without the LLM and rule tiers it is admitted at {n['bare_silent']}, answering {n['bare_local']} locally. A naive gate answers {n['gib']} of {n['gib_n']} gibberish strings; the guarded gate none |
 | 9 | Can a wrapper harness compile an agent from its runs? | After {n['n_obs']} recorded runs of a three-call profile analysis: {n['st_s']} s per profile instead of {n['ag_s']} s ({n['pr_s']} s if prose is still generated). {n['n_code']} of {n['n_short']} short fields became pure code; the rest is one narrow typed call reading {n['st_pt']} tokens instead of {n['ag_pt']} |
+| 10 | Does a frontier model as the LLM tier change the picture? | Claude Opus 5.5 (medium effort) on {n['o_n']} of the same requests: {n['o_unseen']} right on never-seen groups against {n['q_unseen']} for the local model, "none" exit on {n['o_none']} of out-of-scope queries against {n['q_none']}, an in-scope answer to {n['o_inj']} of {n['o_inj_n']} prompt-injection strings against {n['q_inj']}. Always asking it is {n['o_always']} wrong; the guarded fast tier in front of it is {n['o_guard']} wrong and saves {n['o_saved']} of the calls; a naive fast tier in front of it is {n['o_naive']} wrong. Answered in batches through subagents, so no latency or cost |
 
 {fig("unseen-groups.png", "Two bar charts: wrong answers per request from never-seen groups fall from 17.6% to 1.6% when calibration uses held-out groups; familiar requests answered fall from 95% to 63%",
      f"Experiment 3. Left: wrong answers per request from groups the fast model never saw. Right: what the fix costs on familiar traffic. Means over {n['splits']} random group splits, 2% budget.")}
@@ -257,12 +269,14 @@ table and is generated from `results/*.json`.
 | Replayed | Experiments 5, 6 and 8 look up the stored real LLM answer for each exact request instead of calling the model again; per-request latency in the stack and loop tables is assembled from measured per-tier medians |
 | Scripted | The order and mix of traffic in experiment 6, the traffic mixes in experiment 5, the seeded bad inputs, the keyboard noise |
 | Assumed | The agent tier: wherever a request is escalated, the human label is taken as the agent's answer and assumed correct. Escalations are counted, never timed |
-| Not run | Any hosted or frontier model; an agent with tools; GPU latency for the fast tier; real production traffic with repeats |
+| Real answers, different protocol | Experiment 10: Claude Opus 5.5 (medium effort) answered through Claude Code subagents in blind batches of about 220 requests, not one API call per request. No latency, no token probabilities, no measured cost |
+| Not run | Any hosted model through its API; any OpenAI model; an agent with tools; GPU latency for the fast tier; real production traffic with repeats |
 
 ## Limits
 
-- **The LLMs are 4-bit local models of about 4B parameters.** Every statement about the LLM tier is about
-  them. A stronger model would move the always-LLM comparison; the fast-tier results would stay.
+- **Outside experiment 10 the LLMs are 4-bit local models of about 4B parameters.** Every other statement about
+  the LLM tier is about them. Experiment 10 is one hosted model at one effort setting on one frozen split,
+  answered in batches, with no latency or cost measured.
 - **The agent is the human label.** Those labels are themselves imperfect, visibly so on MASSIVE and on the
   news sections.
 - **One frozen group split carries the LLM-in-the-loop results** (experiments 4, 5, 6 and 8). The fast-tier
@@ -299,6 +313,9 @@ python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m bench.exp8_kernel
 .venv/bin/python -m bench.exp9_harness collect # the agent the harness observes (GPU, ~25 min)
 .venv/bin/python -m bench.exp9_harness run     # compile from traces, run compiled program
+.venv/bin/python -m bench.exp10_closed prepare <dir>              # write blind batch files for a hosted model
+.venv/bin/python -m bench.exp10_closed ingest <dir> <model-key>   # read its answers back
+.venv/bin/python -m bench.exp10_closed score <model-key>          # same rows, same scoring as the local LLM
 .venv/bin/python -m bench.make_report          # REPORT.md
 .venv/bin/python -m bench.make_readme          # this file
 ```
@@ -322,9 +339,19 @@ Kernel tests: `.venv/bin/python -m unittest discover -s tests` (21 tests). Skill
 | `bench/` | datasets, encoders, model families, the local-LLM tier, one module per experiment, and the generators for `REPORT.md` and this file |
 | `wfc/`, `tests/` | the runtime kernel the experiments import, and its tests |
 | `cache/llm/` | every stored real LLM answer: model, prompt version, exact query, raw reply, token probability |
+| `cache/closed/` | experiment 10: the batch files given to the hosted model, its answers, and the scoring key |
 | `gallery/` | the figures above |
 | `blog/` | the scripts that draw the figures and the film from `results/` |
 | `logs/pip_freeze.txt` | exact package versions of the run |
+
+## Corrections
+
+- **11 November 2026, experiment 6.** The first version counted applications for a new credit card as requests
+  re-routed by the policy change. The policy text does not cover them, and both LLMs given the changed contract
+  kept most of them where they were. The phase was rerun with the three request types the policy names. Withdrawn:
+  65% of re-routed requests answered under the old rule, detection after 400 requests at a 10% shadow rate, the
+  naive program at 21.4% wrong overall, the guarded one at 6.7%. Current numbers are in the table above and in
+  [`REPORT.md`](REPORT.md). The production-loop figure was redrawn.
 
 ## Credits
 
